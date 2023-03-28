@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.bajenovsasha.roadsign_zakaz.app.App
 import com.bajenovsasha.roadsign_zakaz.presentation.activity.ActivityViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
@@ -45,6 +46,8 @@ abstract class BaseFragment<B: ViewBinding, VM: BaseViewModel> : Fragment() {
 			_activityVM = ViewModelProvider(requireActivity())[ActivityViewModel::class.java].also {
 				(_viewModel as? BaseViewModel)?.initActivityVM(it)
 			}
+
+			(_viewModel as? BaseViewModel)?.initRouter((requireContext().applicationContext as App).router)
 
 			initStartValues()
 			initUI()

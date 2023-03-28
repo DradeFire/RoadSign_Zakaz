@@ -2,6 +2,7 @@ package com.bajenovsasha.roadsign_zakaz.presentation.features.roaddraw
 
 import com.bajenovsasha.roadsign_zakaz.utils.RoadNumberFormatter
 import com.bajenovsasha.roadsign_zakaz.presentation.base.BaseViewModel
+import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignInfo
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
@@ -16,6 +17,12 @@ class RoadDrawViewModel : BaseViewModel() {
 	}
 
 	fun onSaveClicked(id: Int, roadNumberType: RoadSignType) {
-		TODO("Not yet implemented")
+		roadSignString.value?.let {
+			activityVM?.let { vm ->
+				vm.roadNumbersModelMap[id] = RoadSignInfo(roadNumberType, it)
+			}
+		}
+
+
 	}
 }
