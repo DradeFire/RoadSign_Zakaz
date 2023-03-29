@@ -14,7 +14,7 @@ import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: RoadSignType = RoadSignType.RUS_2) :
+class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: RoadSignType) :
 	BaseFragment<FragmentRoadDrawBinding, RoadDrawViewModel>() {
 
 	override val inflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentRoadDrawBinding
@@ -64,8 +64,8 @@ class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: Ro
 	}
 
 	override fun initUI() {
-		initKeyboard()
-		openKeyboard()
+//		initKeyboard()
+//		openKeyboard()
 	}
 
 	override fun initButtons() {
@@ -88,7 +88,7 @@ class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: Ro
 	companion object {
 
 		@JvmStatic
-		fun newInstance(id: Int) = RoadDrawFragment(id)
+		fun newInstance(id: Int, type: RoadSignType) = RoadDrawFragment(id, type)
 	}
 
 }

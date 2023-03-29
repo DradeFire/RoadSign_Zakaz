@@ -19,10 +19,9 @@ class RoadDrawViewModel : BaseViewModel() {
 	fun onSaveClicked(id: Int, roadNumberType: RoadSignType) {
 		roadSignString.value?.let {
 			activityVM?.let { vm ->
-				vm.roadNumbersModelMap[id] = RoadSignInfo(roadNumberType, it)
+				vm.roadNumbersModelMap[id] = RoadSignInfo(roadNumberType, it.toUpperCase())
 			}
 		}
-
-
+		router?.exit()
 	}
 }

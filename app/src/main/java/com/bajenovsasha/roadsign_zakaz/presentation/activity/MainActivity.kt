@@ -6,6 +6,7 @@ import com.bajenovsasha.roadsign_zakaz.R
 import com.bajenovsasha.roadsign_zakaz.app.App
 import com.bajenovsasha.roadsign_zakaz.databinding.ActivityMainBinding
 import com.bajenovsasha.roadsign_zakaz.navigation.Screens
+import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import com.github.terrakok.cicerone.androidx.AppNavigator
 
 //class MainActivity : AppCompatActivity() {
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
 		if (binding == null) binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding?.root)
 
-		(applicationContext as? App)?.router?.newRootScreen(Screens.roadSignScreen(0))
+//		(applicationContext as? App)?.router?.newRootScreen(Screens.mainScreen())
+		(applicationContext as? App)?.router?.newRootScreen(Screens.roadSignScreen(1, RoadSignType.RUS_2))
 	}
 
 	override fun onResumeFragments() {

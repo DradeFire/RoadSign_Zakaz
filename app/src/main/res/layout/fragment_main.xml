@@ -1,14 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.features.main.MainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imRoadNumber1"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imRoadNumber2"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber1" />
+
+        <ImageView
+            android:id="@+id/imRoadNumber3"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber2" />
+
+        <ImageView
+            android:id="@+id/imRoadNumber4"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber3" />
+
+        <ImageView
+            android:id="@+id/imRoadNumber5"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber4" />
+
+        <ImageView
+            android:id="@+id/imRoadNumber6"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/btSaveRoadNumberList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber5" />
+
+        <TextView
+            android:id="@+id/txRoadNumber1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roadn_font"
+            android:text="АВЕ"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber1"
+            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber1"
+            app:layout_constraintStart_toStartOf="@+id/imRoadNumber1" />
+
+        <TextView
+            android:id="@+id/txRoadNumber2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roadn_font"
+            android:text="АВЕ"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber2"
+            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber2"
+            app:layout_constraintStart_toStartOf="@+id/imRoadNumber2" />
+
+        <TextView
+            android:id="@+id/txRoadNumber3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roadn_font"
+            android:text="АВЕ"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber3"
+            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber3"
+            app:layout_constraintStart_toStartOf="@+id/imRoadNumber3" />
+
+        <TextView
+            android:id="@+id/txRoadNumber4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roadn_font"
+            android:text="АВЕ"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber4"
+            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber4"
+            app:layout_constraintStart_toStartOf="@+id/imRoadNumber4" />
+
+        <TextView
+            android:id="@+id/txRoadNumber5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roadn_font"
+            android:text="АВЕ"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber5"
+            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber5"
+            app:layout_constraintStart_toStartOf="@+id/imRoadNumber5" />
+
+        <TextView
+            android:id="@+id/txRoadNumber6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roadn_font"
+            android:text="АВЕ"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber6"
+            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber6"
+            app:layout_constraintStart_toStartOf="@+id/imRoadNumber6" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btSaveRoadNumberList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_save"
+            android:text="Сохранить шаблон"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
