@@ -12,6 +12,7 @@ import com.bajenovsasha.roadsign_zakaz.presentation.base.BaseFragment
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignInfo
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import com.bajenovsasha.roadsign_zakaz.uikit.ChooseRoadNumberDialog
+import com.bajenovsasha.roadsign_zakaz.uikit.InputFileNameDialog
 import com.bajenovsasha.roadsign_zakaz.utils.RoadNumberUiFormatter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -49,7 +50,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 		binding?.apply {
 			btSaveRoadNumberList.setOnClickListener {
 				viewModel?.onSaveClicked { map ->
-					drawView2.setAndSaveRoadNumbers(map)
+					InputFileNameDialog { fileName: String ->
+						drawView2.setAndSaveRoadNumbers(map, fileName)
+					}.show(requireActivity().supportFragmentManager, "input_file_name")
 				}
 			}
 			imRoadNumber1.setOnClickListener {
@@ -125,6 +128,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 			}
 		}
 	}
+
+
 
 	private fun onRoadNumberClicked(i: Int) {
 		ChooseRoadNumberDialog { type: RoadSignType ->

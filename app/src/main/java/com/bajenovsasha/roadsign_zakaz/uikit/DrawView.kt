@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
@@ -26,20 +27,23 @@ class DrawView @JvmOverloads constructor(
 
 	private val paint: Paint = Paint(Paint.FILTER_BITMAP_FLAG)
 	private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-		typeface = ResourcesCompat.getFont(context, R.font.roadn_font)
+		typeface =
+			Typeface.create(ResourcesCompat.getFont(context, R.font.roadn_font)!!, Typeface.BOLD)
 		textSize = 27.dp
 	}
 	private val textNumPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-		typeface = ResourcesCompat.getFont(context, R.font.roadn_font)
+		typeface =
+			Typeface.create(ResourcesCompat.getFont(context, R.font.roadn_font)!!, Typeface.BOLD)
 		textSize = 29.dp
 	}
 	private val textMiniNumPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-		typeface = ResourcesCompat.getFont(context, R.font.roadn_font)
+		typeface =
+			Typeface.create(ResourcesCompat.getFont(context, R.font.roadn_font)!!, Typeface.BOLD)
 		textSize = 22.dp
 	}
 
-	private val bitmapSourceRoad2: Bitmap = context.getDrawable(R.drawable.f1)!!.toBitmap()
-	private val bitmapSourceRoad3: Bitmap = context.getDrawable(R.drawable.f2)!!.toBitmap()
+	private val bitmapSourceRoad2: Bitmap = context.getDrawable(R.drawable.j1)!!.toBitmap()
+	private val bitmapSourceRoad3: Bitmap = context.getDrawable(R.drawable.j2)!!.toBitmap()
 	private val bitmap: Bitmap = Bitmap.createBitmap(
 		150.dp.roundToInt(),
 		228.dp.roundToInt(),
@@ -54,7 +58,7 @@ class DrawView @JvmOverloads constructor(
 
 		for (i in 0..5) {
 			val w = 8.dp
-			val h = bitmapSourceRoad2.height.toFloat() * i + 2.7.dp * (2 * i + 1) + 3.dp
+			val h = bitmapSourceRoad2.height.toFloat() * i + 2.7.dp * (2 * i + 1) + 5.5.dp
 
 			bitmapCanvas.drawBitmap(
 				bitmapSourceRoad2,
@@ -63,51 +67,51 @@ class DrawView @JvmOverloads constructor(
 				paint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(0).toString(),
+				"О999ОО99"[0].toString(),
 				w + 6.5.dp,
-				h + 24.7.dp,
+				h + 25.3.dp,
 				textPaint
 			)
 			bitmapCanvas.drawText(
 				"О999ОО99".elementAt(1).toString(),
 				w + 6.5.dp + 17.dp,
-				h + 24.7.dp,
+				h + 25.3.dp,
 				textNumPaint
 			)
 			bitmapCanvas.drawText(
 				"О999ОО99".elementAt(2).toString(),
 				w + 6.5.dp + 31.dp,
-				h + 24.7.dp,
+				h + 25.3.dp,
 				textNumPaint
 			)
 			bitmapCanvas.drawText(
 				"О999ОО99".elementAt(3).toString(),
 				w + 6.5.dp + 46.dp,
-				h + 24.7.dp,
+				h + 25.3.dp,
 				textNumPaint
 			)
 			bitmapCanvas.drawText(
 				"О999ОО99".elementAt(4).toString(),
 				w + 6.5.dp + 62.5.dp,
-				h + 24.7.dp,
+				h + 25.3.dp,
 				textPaint
 			)
 			bitmapCanvas.drawText(
 				"О999ОО99".elementAt(5).toString(),
 				w + 6.5.dp + 77.dp,
-				h + 24.7.dp,
+				h + 25.3.dp,
 				textPaint
 			)
 			bitmapCanvas.drawText(
 				"О999ОО99".elementAt(6).toString(),
 				w + 6.5.dp + 97.5.dp,
-				h + 19.5.dp,
+				h + 20.1.dp,
 				textMiniNumPaint
 			)
 			bitmapCanvas.drawText(
 				"О999ОО99".elementAt(7).toString(),
 				w + 6.5.dp + 109.dp,
-				h + 19.5.dp,
+				h + 20.1.dp,
 				textMiniNumPaint
 			)
 		}
@@ -115,13 +119,13 @@ class DrawView @JvmOverloads constructor(
 		canvas?.drawBitmap(bitmap, 0f, 0f, paint)
 	}
 
-	fun setAndSaveRoadNumbers(map: HashMap<Int, RoadSignInfo>) {
+	fun setAndSaveRoadNumbers(map: HashMap<Int, RoadSignInfo>, fileName: String) {
 		val bitmapCanvas = Canvas(bitmap)
 		bitmapCanvas.drawColor(Color.WHITE)
 
 		for (i in 0..5) {
 			val w = 8.dp
-			val h = bitmapSourceRoad2.height.toFloat() * i + 2.7.dp * (2 * i + 1) + 3.dp
+			val h = bitmapSourceRoad2.height.toFloat() * i + 2.7.dp * (2 * i + 1) + 5.5.dp
 
 			map[i + 1]?.let { roadSignInfo ->
 				when (roadSignInfo.type) {
@@ -135,49 +139,49 @@ class DrawView @JvmOverloads constructor(
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(0).toString(),
 							w + 6.5.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(1).toString(),
 							w + 6.5.dp + 17.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(2).toString(),
 							w + 6.5.dp + 31.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(3).toString(),
 							w + 6.5.dp + 46.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(4).toString(),
 							w + 6.5.dp + 62.5.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(5).toString(),
 							w + 6.5.dp + 77.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(6).toString(),
 							w + 6.5.dp + 97.5.dp,
-							h + 19.5.dp,
+							h + 20.1.dp,
 							textMiniNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(7).toString(),
 							w + 6.5.dp + 109.dp,
-							h + 19.5.dp,
+							h + 20.1.dp,
 							textMiniNumPaint
 						)
 					}
@@ -191,55 +195,55 @@ class DrawView @JvmOverloads constructor(
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(0).toString(),
 							w + 5.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(1).toString(),
 							w + 5.dp + 14.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(2).toString(),
 							w + 5.dp + 29.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(3).toString(),
 							w + 5.dp + 43.2.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(4).toString(),
 							w + 5.dp + 58.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(5).toString(),
 							w + 5.dp + 72.5.dp,
-							h + 24.7.dp,
+							h + 25.3.dp,
 							textPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(6).toString(),
 							w + 5.dp + 90.dp,
-							h + 19.dp,
+							h + 20.1.dp,
 							textMiniNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(7).toString(),
 							w + 5.dp + 101.dp,
-							h + 19.dp,
+							h + 20.1.dp,
 							textMiniNumPaint
 						)
 						bitmapCanvas.drawText(
 							roadSignInfo.sign.elementAt(8).toString(),
 							w + 5.dp + 112.dp,
-							h + 19.dp,
+							h + 20.1.dp,
 							textMiniNumPaint
 						)
 					}
@@ -247,7 +251,7 @@ class DrawView @JvmOverloads constructor(
 			}
 
 		}
-		FileUtils.saveImage(bitmap)
+		FileUtils.saveImage(bitmap, fileName)
 		Toast.makeText(context, "Успешное сохранение файла!", Toast.LENGTH_SHORT).show()
 	}
 

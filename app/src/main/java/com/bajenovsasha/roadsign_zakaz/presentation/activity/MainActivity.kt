@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		if (binding == null) binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding?.root)
-
-//		(applicationContext as? App)?.router?.newRootScreen(Screens.mainScreen())
-//		(applicationContext as? App)?.router?.newRootScreen(Screens.roadSignScreen(1, RoadSignType.RUS_2))
 	}
 
 	override fun onResumeFragments() {
