@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bajenovsasha.roadsign_zakaz.R
 import com.bajenovsasha.roadsign_zakaz.app.App
 import com.bajenovsasha.roadsign_zakaz.databinding.ActivityMainBinding
-import com.bajenovsasha.roadsign_zakaz.navigation.Screens
-import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import com.github.terrakok.cicerone.androidx.AppNavigator
 
 class MainActivity : AppCompatActivity() {

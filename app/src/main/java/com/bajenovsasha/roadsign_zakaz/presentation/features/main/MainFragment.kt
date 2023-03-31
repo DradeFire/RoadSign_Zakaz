@@ -38,12 +38,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 		binding?.txRoadNumber5?.text = ""
 		binding?.txRoadNumber6?.text = ""
 
-		binding?.imRoadNumber1?.setImageResource(R.drawable.ic_add)
-		binding?.imRoadNumber2?.setImageResource(R.drawable.ic_add)
-		binding?.imRoadNumber3?.setImageResource(R.drawable.ic_add)
-		binding?.imRoadNumber4?.setImageResource(R.drawable.ic_add)
-		binding?.imRoadNumber5?.setImageResource(R.drawable.ic_add)
-		binding?.imRoadNumber6?.setImageResource(R.drawable.ic_add)
+		binding?.imRoadNumber1?.setImageResource(R.drawable.plus)
+		binding?.imRoadNumber2?.setImageResource(R.drawable.plus)
+		binding?.imRoadNumber3?.setImageResource(R.drawable.plus)
+		binding?.imRoadNumber4?.setImageResource(R.drawable.plus)
+		binding?.imRoadNumber5?.setImageResource(R.drawable.plus)
+		binding?.imRoadNumber6?.setImageResource(R.drawable.plus)
 	}
 
 	override fun initButtons() {
