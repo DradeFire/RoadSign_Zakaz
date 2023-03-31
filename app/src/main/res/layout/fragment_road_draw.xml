@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.bajenovsasha.roadsign_zakaz.presentation.features.roaddraw.view.DrawView
+        <com.bajenovsasha.roadsign_zakaz.uikit.DrawView
             android:id="@+id/drawView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

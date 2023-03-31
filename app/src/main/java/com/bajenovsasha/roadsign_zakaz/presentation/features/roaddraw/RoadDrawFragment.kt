@@ -11,6 +11,7 @@ import com.bajenovsasha.roadsign_zakaz.R
 import com.bajenovsasha.roadsign_zakaz.databinding.FragmentRoadDrawBinding
 import com.bajenovsasha.roadsign_zakaz.presentation.base.BaseFragment
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
+import com.bajenovsasha.roadsign_zakaz.utils.RoadNumberUiFormatter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -45,13 +46,17 @@ class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: Ro
 					.subscribeOn(Schedulers.computation())
 					.observeOn(AndroidSchedulers.mainThread())
 					.subscribe({ roadSignStr ->
-						binding?.txSign?.text = roadSignStr
+						bindRoadNumberUI(roadSignStr)
 					}, { err ->
 						err.printStackTrace()
 						Toast.makeText(requireContext(), err.message, Toast.LENGTH_SHORT).show()
 					})
 			)
 		}
+	}
+
+	private fun bindRoadNumberUI(roadSignStr: String) {
+		binding?.txSign?.text = RoadNumberUiFormatter.format(roadSignStr)
 	}
 
 	override fun initStartValues() {
@@ -64,8 +69,13 @@ class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: Ro
 	}
 
 	override fun initUI() {
+		clearUI()
 		initKeyboard()
 		openKeyboard()
+	}
+
+	private fun clearUI() {
+		binding?.txSign?.text = ""
 	}
 
 	override fun initButtons() {

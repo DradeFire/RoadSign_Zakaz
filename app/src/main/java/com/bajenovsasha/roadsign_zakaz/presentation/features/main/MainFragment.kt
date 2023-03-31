@@ -12,6 +12,7 @@ import com.bajenovsasha.roadsign_zakaz.presentation.base.BaseFragment
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignInfo
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import com.bajenovsasha.roadsign_zakaz.uikit.ChooseRoadNumberDialog
+import com.bajenovsasha.roadsign_zakaz.utils.RoadNumberUiFormatter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.HashMap
@@ -24,7 +25,24 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 		get() = MainViewModel::class.java
 
 	override fun initUI() {
+		clearUI()
 		viewModel?.onInitView()
+	}
+
+	private fun clearUI() {
+		binding?.txRoadNumber1?.text = ""
+		binding?.txRoadNumber2?.text = ""
+		binding?.txRoadNumber3?.text = ""
+		binding?.txRoadNumber4?.text = ""
+		binding?.txRoadNumber5?.text = ""
+		binding?.txRoadNumber6?.text = ""
+
+		binding?.imRoadNumber1?.isVisible = false
+		binding?.imRoadNumber2?.isVisible = false
+		binding?.imRoadNumber3?.isVisible = false
+		binding?.imRoadNumber4?.isVisible = false
+		binding?.imRoadNumber5?.isVisible = false
+		binding?.imRoadNumber6?.isVisible = false
 	}
 
 	override fun initButtons() {
@@ -98,8 +116,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 		binding?.apply {
 			txView.apply {
 				isVisible = true
-				text = road.sign
+				text = RoadNumberUiFormatter.format(road.sign)
 			}
+			imageView.isVisible = true
 			when(road.type) {
 				RoadSignType.RUS_2 -> imageView.setImageResource(R.drawable.f1)
 				RoadSignType.RUS_3 -> imageView.setImageResource(R.drawable.f2)

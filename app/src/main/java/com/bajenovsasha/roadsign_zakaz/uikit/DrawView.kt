@@ -1,4 +1,4 @@
-package com.bajenovsasha.roadsign_zakaz.presentation.features.roaddraw.view
+package com.bajenovsasha.roadsign_zakaz.uikit
 
 import android.content.Context
 import android.content.res.Resources
@@ -49,7 +49,7 @@ class DrawView @JvmOverloads constructor(
 
 	fun setAndSaveRoadNumbers(map: HashMap<Int, RoadSignInfo>) {
 		val bitmapCanvas = Canvas(bitmap)
-		bitmapCanvas.drawColor(Color.GREEN)
+		bitmapCanvas.drawColor(Color.WHITE)
 
 		for (i in 0..5) {
 			val w = 10.dp
