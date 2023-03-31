@@ -75,7 +75,9 @@ class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: Ro
 	}
 
 	private fun clearUI() {
-		binding?.txSign?.text = ""
+		repeat(10) {
+			viewModel?.onCustomKeyClicked(-1, roadNumberType)
+		}
 	}
 
 	override fun initButtons() {
