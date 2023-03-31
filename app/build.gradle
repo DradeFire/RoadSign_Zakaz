@@ -37,7 +37,7 @@ android {
 
 def room_version = "2.5.1"
 //def retrofit_version = "2.9.0"
-//def junit_version = "4.13.2"
+def junit_version = "4.13.2"
 //def nav_version = "2.5.3"
 
 // Room
@@ -68,11 +68,11 @@ dependencies {
 }
 
 // Tests
-//dependencies {
-//    testImplementation "junit:junit:$junit_version"
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-//}
+dependencies {
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
 
 //Cicerone
 dependencies {

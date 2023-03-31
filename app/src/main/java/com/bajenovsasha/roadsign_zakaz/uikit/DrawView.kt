@@ -27,15 +27,15 @@ class DrawView @JvmOverloads constructor(
 	private val paint: Paint = Paint(Paint.FILTER_BITMAP_FLAG)
 	private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
 		typeface = ResourcesCompat.getFont(context, R.font.roadn_font)
-		textSize = 27.sp
+		textSize = 27.dp
 	}
 	private val textNumPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
 		typeface = ResourcesCompat.getFont(context, R.font.roadn_font)
-		textSize = 29.sp
+		textSize = 29.dp
 	}
 	private val textMiniNumPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
 		typeface = ResourcesCompat.getFont(context, R.font.roadn_font)
-		textSize = 22.sp
+		textSize = 22.dp
 	}
 
 	private val bitmapSourceRoad2: Bitmap = context.getDrawable(R.drawable.f1)!!.toBitmap()
@@ -54,7 +54,7 @@ class DrawView @JvmOverloads constructor(
 
 		for (i in 0..5) {
 			val w = 8.dp
-			val h = bitmapSourceRoad2.height.toFloat() * i + 2.5.dp * (2 * i + 1) + 3.dp
+			val h = bitmapSourceRoad2.height.toFloat() * i + 2.7.dp * (2 * i + 1) + 3.dp
 
 			bitmapCanvas.drawBitmap(
 				bitmapSourceRoad2,
@@ -121,7 +121,7 @@ class DrawView @JvmOverloads constructor(
 
 		for (i in 0..5) {
 			val w = 8.dp
-			val h = bitmapSourceRoad2.height.toFloat() * i + 2.5.dp * (2 * i + 1) + 3.dp
+			val h = bitmapSourceRoad2.height.toFloat() * i + 2.7.dp * (2 * i + 1) + 3.dp
 
 			map[i + 1]?.let { roadSignInfo ->
 				when (roadSignInfo.type) {
@@ -257,10 +257,10 @@ class DrawView @JvmOverloads constructor(
 			this.toFloat(),
 			Resources.getSystem().displayMetrics
 		)
-	private val Number.sp
-		get() = TypedValue.applyDimension(
-			TypedValue.COMPLEX_UNIT_SP,
-			this.toFloat(),
-			Resources.getSystem().displayMetrics
-		)
+//	private val Number.sp
+//		get() = TypedValue.applyDimension(
+//			TypedValue.COMPLEX_UNIT_SP,
+//			this.toFloat(),
+//			Resources.getSystem().displayMetrics
+//		)
 }
