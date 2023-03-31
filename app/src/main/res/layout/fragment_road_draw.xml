@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="TextView"
-            android:visibility="gone"
+            android:textSize="20sp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +45,7 @@
             android:background="@drawable/bt_save"
             android:text="Сохранить"
             android:textSize="16sp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/keyboardview"
             app:layout_constraintEnd_toEndOf="@+id/txSign"
             app:layout_constraintStart_toStartOf="@+id/txSign"

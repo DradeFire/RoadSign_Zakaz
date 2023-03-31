@@ -7,10 +7,10 @@ object RoadNumberFormatter {
 	private fun validInteger(roadSignString: String, currentRoadNumberType: RoadSignType): Boolean {
 		return when (currentRoadNumberType) {
 			RoadSignType.RUS_2 -> {
-				roadSignString.isEmpty() || roadSignString.length in 4..7
+				roadSignString.length in 1..3 || roadSignString.length in 6..7
 			}
 			RoadSignType.RUS_3 -> {
-				roadSignString.isEmpty() || roadSignString.length in 4..8
+				roadSignString.length in 1..3 || roadSignString.length in 6..8
 			}
 		}
 	}

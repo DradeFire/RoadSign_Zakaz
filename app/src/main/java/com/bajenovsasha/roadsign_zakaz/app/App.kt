@@ -9,8 +9,4 @@ class App : Application() {
 	val router get() = cicerone.router
 	val navigatorHolder get() = cicerone.getNavigatorHolder()
 
-	companion object {
-		private const val INIT_APP_LOG = "Init application"
-	}
-
 }

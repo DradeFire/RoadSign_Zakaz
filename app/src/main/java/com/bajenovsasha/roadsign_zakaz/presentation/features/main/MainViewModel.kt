@@ -14,8 +14,8 @@ class MainViewModel : BaseViewModel() {
 		activityVM?.roadNumbersModelMap?.let { roadNumbersModelMap.onNext(it) }
 	}
 
-	fun onSaveClicked() {
-		// Сохранить картинку с разметкой
+	fun onSaveClicked(func: (HashMap<Int, RoadSignInfo>) -> Unit) {
+		activityVM?.roadNumbersModelMap?.let { func(it) }
 	}
 
 	fun onAddRoadNumClicked(idNumber: Int, type: RoadSignType) {

@@ -1,6 +1,7 @@
 package com.bajenovsasha.roadsign_zakaz.utils
 
 import android.graphics.Bitmap
+import com.bajenovsasha.roadsign_zakaz.common.Consts.DIRECTORY_IMAGE
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
@@ -8,7 +9,7 @@ import java.util.*
 object FileUtils {
 
 	fun saveImage(bitmap: Bitmap) {
-		val myDir = File("/sdcard/saved_images")
+		val myDir = File(DIRECTORY_IMAGE)
 		myDir.mkdirs()
 		val fname = "${Calendar.getInstance().time.time}.png"
 		val file = File(myDir, fname)

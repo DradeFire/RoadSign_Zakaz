@@ -30,7 +30,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 	override fun initButtons() {
 		binding?.apply {
 			btSaveRoadNumberList.setOnClickListener {
-				viewModel?.onSaveClicked()
+				viewModel?.onSaveClicked { map ->
+					drawView2.setAndSaveRoadNumbers(map)
+				}
 			}
 			imRoadNumber1.setOnClickListener {
 				onRoadNumberClicked(1)
@@ -92,13 +94,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 		}
 	}
 
-	private fun bindUI(r: RoadSignInfo, txView: TextView, imageView: ImageView) {
+	private fun bindUI(road: RoadSignInfo, txView: TextView, imageView: ImageView) {
 		binding?.apply {
 			txView.apply {
 				isVisible = true
-				text = r.sign
+				text = road.sign
 			}
-			when(r.type) {
+			when(road.type) {
 				RoadSignType.RUS_2 -> imageView.setImageResource(R.drawable.f1)
 				RoadSignType.RUS_3 -> imageView.setImageResource(R.drawable.f2)
 			}

@@ -64,8 +64,8 @@ class RoadDrawFragment(private val idNumber: Int, private val roadNumberType: Ro
 	}
 
 	override fun initUI() {
-//		initKeyboard()
-//		openKeyboard()
+		initKeyboard()
+		openKeyboard()
 	}
 
 	override fun initButtons() {

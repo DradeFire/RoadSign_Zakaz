@@ -9,20 +9,6 @@ import com.bajenovsasha.roadsign_zakaz.navigation.Screens
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import com.github.terrakok.cicerone.androidx.AppNavigator
 
-//class MainActivity : AppCompatActivity() {
-//
-//	override fun onCreate(savedInstanceState: Bundle?) {
-//		super.onCreate(savedInstanceState)
-//		val binding = ActivityMainBinding.inflate(layoutInflater)
-//		setContentView(binding.root)
-//
-//		binding.testText.apply {
-//			typeface = ResourcesCompat.getFont(this@MainActivity, R.font.roadn_font)
-//			setTextSize(TypedValue.COMPLEX_UNIT_SP, 40f)
-//			text = "ABE abe 123 456 АБЕ абе"
-//		}
-//	}
-//}
 class MainActivity : AppCompatActivity() {
 
 	private var binding: ActivityMainBinding? = null
@@ -34,8 +20,8 @@ class MainActivity : AppCompatActivity() {
 		if (binding == null) binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding?.root)
 
-//		(applicationContext as? App)?.router?.newRootScreen(Screens.mainScreen())
-		(applicationContext as? App)?.router?.newRootScreen(Screens.roadSignScreen(1, RoadSignType.RUS_2))
+		(applicationContext as? App)?.router?.newRootScreen(Screens.mainScreen())
+//		(applicationContext as? App)?.router?.newRootScreen(Screens.roadSignScreen(1, RoadSignType.RUS_2))
 	}
 
 	override fun onResumeFragments() {
