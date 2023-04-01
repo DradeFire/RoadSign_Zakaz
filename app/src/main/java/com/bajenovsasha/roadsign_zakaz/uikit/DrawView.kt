@@ -42,6 +42,8 @@ class DrawView @JvmOverloads constructor(
 		textSize = 22.dp
 	}
 
+	private val testSign = "О999ОО99"
+
 	private val bitmapSourceRoad2: Bitmap = context.getDrawable(R.drawable.j1)!!.toBitmap()
 	private val bitmapSourceRoad3: Bitmap = context.getDrawable(R.drawable.j2)!!.toBitmap()
 	private val bitmap: Bitmap = Bitmap.createBitmap(
@@ -56,6 +58,7 @@ class DrawView @JvmOverloads constructor(
 		val bitmapCanvas = Canvas(bitmap)
 		bitmapCanvas.drawColor(Color.GREEN)
 
+
 		for (i in 0..5) {
 			val w = 8.dp
 			val h = bitmapSourceRoad2.height.toFloat() * i + 2.7.dp * (2 * i + 1) + 5.5.dp
@@ -67,49 +70,49 @@ class DrawView @JvmOverloads constructor(
 				paint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99"[0].toString(),
+				testSign.elementAt(0).toString(),
 				w + 6.5.dp,
 				h + 25.3.dp,
 				textPaint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(1).toString(),
+				testSign.elementAt(1).toString(),
 				w + 6.5.dp + 17.dp,
 				h + 25.3.dp,
 				textNumPaint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(2).toString(),
+				testSign.elementAt(2).toString(),
 				w + 6.5.dp + 31.dp,
 				h + 25.3.dp,
 				textNumPaint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(3).toString(),
+				testSign.elementAt(3).toString(),
 				w + 6.5.dp + 46.dp,
 				h + 25.3.dp,
 				textNumPaint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(4).toString(),
+				testSign.elementAt(4).toString(),
 				w + 6.5.dp + 62.5.dp,
 				h + 25.3.dp,
 				textPaint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(5).toString(),
+				testSign.elementAt(5).toString(),
 				w + 6.5.dp + 77.dp,
 				h + 25.3.dp,
 				textPaint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(6).toString(),
+				testSign.elementAt(6).toString(),
 				w + 6.5.dp + 97.5.dp,
 				h + 20.1.dp,
 				textMiniNumPaint
 			)
 			bitmapCanvas.drawText(
-				"О999ОО99".elementAt(7).toString(),
+				testSign.elementAt(7).toString(),
 				w + 6.5.dp + 109.dp,
 				h + 20.1.dp,
 				textMiniNumPaint
@@ -136,54 +139,70 @@ class DrawView @JvmOverloads constructor(
 							h,
 							paint
 						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(0).toString(),
-							w + 6.5.dp,
-							h + 25.3.dp,
-							textPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(1).toString(),
-							w + 6.5.dp + 17.dp,
-							h + 25.3.dp,
-							textNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(2).toString(),
-							w + 6.5.dp + 31.dp,
-							h + 25.3.dp,
-							textNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(3).toString(),
-							w + 6.5.dp + 46.dp,
-							h + 25.3.dp,
-							textNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(4).toString(),
-							w + 6.5.dp + 62.5.dp,
-							h + 25.3.dp,
-							textPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(5).toString(),
-							w + 6.5.dp + 77.dp,
-							h + 25.3.dp,
-							textPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(6).toString(),
-							w + 6.5.dp + 97.5.dp,
-							h + 20.1.dp,
-							textMiniNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(7).toString(),
-							w + 6.5.dp + 109.dp,
-							h + 20.1.dp,
-							textMiniNumPaint
-						)
+						if (roadSignInfo.sign.length == 1) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(0).toString(),
+								w + 6.5.dp,
+								h + 25.3.dp,
+								textPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 2) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(1).toString(),
+								w + 6.5.dp + 17.dp,
+								h + 25.3.dp,
+								textNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 3) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(2).toString(),
+								w + 6.5.dp + 31.dp,
+								h + 25.3.dp,
+								textNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 4) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(3).toString(),
+								w + 6.5.dp + 46.dp,
+								h + 25.3.dp,
+								textNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 5) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(4).toString(),
+								w + 6.5.dp + 62.5.dp,
+								h + 25.3.dp,
+								textPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 6) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(5).toString(),
+								w + 6.5.dp + 77.dp,
+								h + 25.3.dp,
+								textPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 7) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(6).toString(),
+								w + 6.5.dp + 97.5.dp,
+								h + 20.1.dp,
+								textMiniNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 8) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(7).toString(),
+								w + 6.5.dp + 109.dp,
+								h + 20.1.dp,
+								textMiniNumPaint
+							)
+						}
 					}
 					RoadSignType.RUS_3 -> {
 						bitmapCanvas.drawBitmap(
@@ -192,60 +211,78 @@ class DrawView @JvmOverloads constructor(
 							h,
 							paint
 						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(0).toString(),
-							w + 5.dp,
-							h + 25.3.dp,
-							textPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(1).toString(),
-							w + 5.dp + 14.dp,
-							h + 25.3.dp,
-							textNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(2).toString(),
-							w + 5.dp + 29.dp,
-							h + 25.3.dp,
-							textNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(3).toString(),
-							w + 5.dp + 43.2.dp,
-							h + 25.3.dp,
-							textNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(4).toString(),
-							w + 5.dp + 58.dp,
-							h + 25.3.dp,
-							textPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(5).toString(),
-							w + 5.dp + 72.5.dp,
-							h + 25.3.dp,
-							textPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(6).toString(),
-							w + 5.dp + 90.dp,
-							h + 20.1.dp,
-							textMiniNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(7).toString(),
-							w + 5.dp + 101.dp,
-							h + 20.1.dp,
-							textMiniNumPaint
-						)
-						bitmapCanvas.drawText(
-							roadSignInfo.sign.elementAt(8).toString(),
-							w + 5.dp + 112.dp,
-							h + 20.1.dp,
-							textMiniNumPaint
-						)
+						if (roadSignInfo.sign.length == 1) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(0).toString(),
+								w + 5.dp,
+								h + 25.3.dp,
+								textPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 2) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(1).toString(),
+								w + 5.dp + 14.dp,
+								h + 25.3.dp,
+								textNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 3) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(2).toString(),
+								w + 5.dp + 29.dp,
+								h + 25.3.dp,
+								textNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 4) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(3).toString(),
+								w + 5.dp + 43.2.dp,
+								h + 25.3.dp,
+								textNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 5) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(4).toString(),
+								w + 5.dp + 58.dp,
+								h + 25.3.dp,
+								textPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 6) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(5).toString(),
+								w + 5.dp + 72.5.dp,
+								h + 25.3.dp,
+								textPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 7) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(6).toString(),
+								w + 5.dp + 90.dp,
+								h + 20.1.dp,
+								textMiniNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 8) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(7).toString(),
+								w + 5.dp + 101.dp,
+								h + 20.1.dp,
+								textMiniNumPaint
+							)
+						}
+						if (roadSignInfo.sign.length == 9) {
+							bitmapCanvas.drawText(
+								roadSignInfo.sign.elementAt(8).toString(),
+								w + 5.dp + 112.dp,
+								h + 20.1.dp,
+								textMiniNumPaint
+							)
+						}
 					}
 				}
 			}
@@ -261,10 +298,4 @@ class DrawView @JvmOverloads constructor(
 			this.toFloat(),
 			Resources.getSystem().displayMetrics
 		)
-//	private val Number.sp
-//		get() = TypedValue.applyDimension(
-//			TypedValue.COMPLEX_UNIT_SP,
-//			this.toFloat(),
-//			Resources.getSystem().displayMetrics
-//		)
 }

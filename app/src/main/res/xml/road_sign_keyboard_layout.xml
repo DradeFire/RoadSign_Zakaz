@@ -53,55 +53,55 @@
             android:codes="11"
             android:keyWidth="13%p"
             android:keyEdgeFlags="left"
-            android:keyLabel="A" />
+            android:keyLabel="А" />
         <Key
             android:codes="12"
             android:keyWidth="13%p"
-            android:keyLabel="B" />
+            android:keyLabel="В" />
         <Key
             android:codes="13"
             android:keyWidth="13%p"
-            android:keyLabel="E" />
+            android:keyLabel="Е" />
         <Key
             android:codes="14"
             android:keyWidth="13%p"
-            android:keyLabel="K" />
+            android:keyLabel="К" />
         <Key
             android:codes="15"
             android:keyWidth="13%p"
-            android:keyLabel="M" />
+            android:keyLabel="М" />
         <Key
             android:codes="16"
             android:keyWidth="13%p"
-            android:keyLabel="O" />
+            android:keyLabel="О" />
         <Key
             android:codes="17"
             android:keyWidth="13%p"
             android:keyEdgeFlags="right"
-            android:keyLabel="T" />
+            android:keyLabel="Т" />
     </Row>
     <Row>
         <Key
             android:codes="18"
             android:keyWidth="15%p"
             android:keyEdgeFlags="left"
-            android:keyLabel="X" />
+            android:keyLabel="Х" />
         <Key
             android:codes="19"
             android:keyWidth="15%p"
-            android:keyLabel="Y" />
+            android:keyLabel="У" />
         <Key
             android:codes="20"
             android:keyWidth="15%p"
-            android:keyLabel="P" />
+            android:keyLabel="Р" />
         <Key
             android:codes="21"
             android:keyWidth="15%p"
-            android:keyLabel="H" />
+            android:keyLabel="Н" />
         <Key
             android:codes="22"
             android:keyWidth="15%p"
-            android:keyLabel="C" />
+            android:keyLabel="С" />
         <Key
             android:codes="-1"
             android:keyWidth="15%p"
