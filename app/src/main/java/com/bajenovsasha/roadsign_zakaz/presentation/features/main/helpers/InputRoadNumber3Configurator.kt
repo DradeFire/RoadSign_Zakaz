@@ -2,6 +2,7 @@ package com.bajenovsasha.roadsign_zakaz.presentation.features.main.helpers
 
 import androidx.lifecycle.MutableLiveData
 import com.bajenovsasha.roadsign_zakaz.R
+import com.bajenovsasha.roadsign_zakaz.databinding.InputRoadNumber2Binding
 import com.bajenovsasha.roadsign_zakaz.databinding.InputRoadNumber3Binding
 import com.bajenovsasha.roadsign_zakaz.utils.RoadNumberFormatter_OneChar
 import com.google.android.material.textfield.TextInputEditText
@@ -114,6 +115,32 @@ class InputRoadNumber3Configurator {
 				}
 			}
 		}
+	}
+
+	fun clear(ed3: InputRoadNumber3Binding) {
+		ed3.edR3Num1.setText("")
+		ed3.edR3Num2.setText("")
+		ed3.edR3Num3.setText("")
+		ed3.edR3Num4.setText("")
+		ed3.edR3Num5.setText("")
+		ed3.edR3Num6.setText("")
+		ed3.edR3Text1.setText("")
+		ed3.edR3Text2.setText("")
+		ed3.edR3Text3.setText("")
+	}
+
+	fun getFullString(ed3: InputRoadNumber3Binding): String {
+		return StringBuilder().apply {
+			append(ed3.edR3Num1.text ?: ' ')
+			append(ed3.edR3Num2.text ?: ' ')
+			append(ed3.edR3Num3.text ?: ' ')
+			append(ed3.edR3Num4.text ?: ' ')
+			append(ed3.edR3Num5.text ?: ' ')
+			append(ed3.edR3Num6.text ?: ' ')
+			append(ed3.edR3Text1.text ?: ' ')
+			append(ed3.edR3Text2.text ?: ' ')
+			append(ed3.edR3Text3.text ?: ' ')
+		}.toString()
 	}
 
 }

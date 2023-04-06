@@ -10,10 +10,6 @@ class MainViewModel : BaseViewModel() {
 
 	val roadSignChar: BehaviorSubject<Char> = BehaviorSubject.createDefault(' ')
 
-	fun onSaveClicked(func: (HashMap<Int, RoadSignInfo>) -> Unit) {
-		activityVM?.roadNumbersModelMap?.let { func(it) }
-	}
-
 	fun onCustomKeyClicked(primaryCode: Int) {
 		roadSignChar.value?.let {
 			roadSignChar.onNext(RoadNumberFormatter_OneChar.format(primaryCode))
