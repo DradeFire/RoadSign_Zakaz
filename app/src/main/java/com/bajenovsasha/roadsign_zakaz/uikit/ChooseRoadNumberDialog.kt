@@ -8,11 +8,18 @@ import androidx.fragment.app.DialogFragment
 import com.bajenovsasha.roadsign_zakaz.databinding.ChooseRoadNumberDialogFragmentBinding
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 
-class ChooseRoadNumberDialog(private val function: (RoadSignType) -> Unit?) : DialogFragment() {
+class ChooseRoadNumberDialog(
+	private val funAddRoadNumb: (RoadSignType) -> Unit?,
+	private val funAddImage: () -> Unit?
+) : DialogFragment() {
 
 	private var binding: ChooseRoadNumberDialogFragmentBinding? = null
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+	override fun onCreateView(
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View? {
 		binding = ChooseRoadNumberDialogFragmentBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
@@ -23,11 +30,15 @@ class ChooseRoadNumberDialog(private val function: (RoadSignType) -> Unit?) : Di
 		binding?.apply {
 			btRoadNum2.setOnClickListener {
 				dismiss()
-				function(RoadSignType.RUS_2)
+				funAddRoadNumb(RoadSignType.RUS_2)
 			}
 			btRoadNum3.setOnClickListener {
 				dismiss()
-				function(RoadSignType.RUS_3)
+				funAddRoadNumb(RoadSignType.RUS_3)
+			}
+			btAddImage.setOnClickListener {
+				dismiss()
+				funAddImage()
 			}
 		}
 	}

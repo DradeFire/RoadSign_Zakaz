@@ -1,24 +1,27 @@
 package com.bajenovsasha.roadsign_zakaz.presentation.features.main
 
-import com.bajenovsasha.roadsign_zakaz.navigation.Screens
 import com.bajenovsasha.roadsign_zakaz.presentation.base.BaseViewModel
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignInfo
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
-import io.reactivex.rxjava3.subjects.PublishSubject
+import com.bajenovsasha.roadsign_zakaz.utils.RoadNumberFormatter_OneChar
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 class MainViewModel : BaseViewModel() {
 
-	val roadNumbersModelMap: PublishSubject<HashMap<Int, RoadSignInfo>> = PublishSubject.create()
-
-	fun onInitView() {
-		activityVM?.roadNumbersModelMap?.let { roadNumbersModelMap.onNext(it) }
-	}
+	val roadSignChar: BehaviorSubject<Char> = BehaviorSubject.createDefault(' ')
 
 	fun onSaveClicked(func: (HashMap<Int, RoadSignInfo>) -> Unit) {
 		activityVM?.roadNumbersModelMap?.let { func(it) }
 	}
 
-	fun onAddRoadNumClicked(idNumber: Int, type: RoadSignType) {
-		router?.navigateTo(Screens.roadSignScreen(idNumber, type))
+	fun onCustomKeyClicked(primaryCode: Int) {
+		roadSignChar.value?.let {
+			roadSignChar.onNext(RoadNumberFormatter_OneChar.format(primaryCode))
+		}
 	}
+
+	fun onAddImage(i: Int, uriStr: String) {
+		activityVM?.roadNumbersModelMap?.let { it[i] = RoadSignInfo(RoadSignType.IMAGE, uriStr) }
+	}
+
 }

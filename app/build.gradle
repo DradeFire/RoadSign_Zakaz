@@ -39,6 +39,7 @@ def room_version = "2.5.1"
 //def retrofit_version = "2.9.0"
 def junit_version = "4.13.2"
 //def nav_version = "2.5.3"
+def pick_it_version = "2.0.5"
 
 // Room
 //dependencies {
@@ -77,6 +78,11 @@ dependencies {
 //Cicerone
 dependencies {
     implementation("com.github.terrakok:cicerone:7.1")
+}
+
+// FilePathFinder
+dependencies {
+    implementation "com.github.HBiSoft:PickiT:$pick_it_version"
 }
 
 

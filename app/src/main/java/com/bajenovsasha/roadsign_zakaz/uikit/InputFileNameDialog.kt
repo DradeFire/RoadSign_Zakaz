@@ -21,7 +21,7 @@ class InputFileNameDialog(private val function: (String) -> Unit) : DialogFragme
 
 		binding?.apply {
 			btSaveRoadNumberFileName.setOnClickListener {
-				if(etInputFilename.text.isNullOrBlank()) {
+				if(!etInputFilename.text.isNullOrBlank()) {
 					dismiss()
 					function(etInputFilename.text.toString())
 				}

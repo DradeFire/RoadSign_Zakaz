@@ -2,7 +2,7 @@ package com.bajenovsasha.roadsign_zakaz.utils
 
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 
-object RoadNumberFormatter {
+object RoadNumberFormatter_Full {
 
 	private fun validInteger(roadSignString: String, currentRoadNumberType: RoadSignType): Boolean {
 		return when (currentRoadNumberType) {
@@ -12,6 +12,7 @@ object RoadNumberFormatter {
 			RoadSignType.RUS_3 -> {
 				roadSignString.length in 1..3 || roadSignString.length in 6..8
 			}
+			else -> false
 		}
 	}
 
@@ -23,6 +24,7 @@ object RoadNumberFormatter {
 			RoadSignType.RUS_3 -> {
 				!validInteger(roadSignString, currentRoadNumberType) && roadSignString.length < 9
 			}
+			else -> false
 		}
 	}
 

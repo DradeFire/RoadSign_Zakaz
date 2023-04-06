@@ -20,11 +20,23 @@
             android:id="@+id/drawView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/etInputRN2_1"
+            layout="@layout/input__road_number_2"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            app:layout_constraintBottom_toTopOf="@+id/etInputRN2_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread" />
 
         <TextView
             android:id="@+id/txSign"
@@ -32,10 +44,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:textSize="20sp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/etInputRN2_2"
+            layout="@layout/input__road_number_2"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            app:layout_constraintBottom_toTopOf="@+id/btSave"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etInputRN2_1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btSave"
@@ -46,9 +69,10 @@
             android:textSize="16sp"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/keyboardview"
-            app:layout_constraintEnd_toEndOf="@+id/txSign"
-            app:layout_constraintStart_toStartOf="@+id/txSign"
-            app:layout_constraintTop_toBottomOf="@+id/txSign" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etInputRN2_2" />
 
         <android.inputmethodservice.KeyboardView
             android:id="@+id/keyboardview"
@@ -58,9 +82,9 @@
             android:layout_centerHorizontal="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:visibility="gone"
             android:keyBackground="@color/keyboard__key_background"
             android:keyTextColor="@color/white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

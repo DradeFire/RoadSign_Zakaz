@@ -1,89 +1,367 @@
 package com.bajenovsasha.roadsign_zakaz.presentation.features.main
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.inputmethodservice.Keyboard
+import android.inputmethodservice.KeyboardView
+import android.net.Uri
+import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.lifecycle.MutableLiveData
 import com.bajenovsasha.roadsign_zakaz.R
 import com.bajenovsasha.roadsign_zakaz.databinding.FragmentMainBinding
 import com.bajenovsasha.roadsign_zakaz.presentation.base.BaseFragment
+import com.bajenovsasha.roadsign_zakaz.presentation.features.main.helpers.InputRoadNumber2Configurator
+import com.bajenovsasha.roadsign_zakaz.presentation.features.main.helpers.InputRoadNumber3Configurator
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignInfo
 import com.bajenovsasha.roadsign_zakaz.presentation.model.RoadSignType
 import com.bajenovsasha.roadsign_zakaz.uikit.ChooseRoadNumberDialog
-import com.bajenovsasha.roadsign_zakaz.uikit.InputFileNameDialog
-import com.bajenovsasha.roadsign_zakaz.utils.RoadNumberUiFormatter
+import com.google.android.material.textfield.TextInputEditText
+import com.hbisoft.pickit.PickiT
+import com.hbisoft.pickit.PickiTCallbacks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.ArrayList
 import java.util.HashMap
 
-class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
+class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTCallbacks {
 
 	override val inflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMainBinding
 		get() = FragmentMainBinding::inflate
 	override val viewModelClass: Class<MainViewModel>
 		get() = MainViewModel::class.java
 
-	override fun initUI() {
-		clearUI()
-		viewModel?.onInitView()
+	private val mOnKeyboardActionListener: KeyboardView.OnKeyboardActionListener =
+		object : KeyboardView.OnKeyboardActionListener {
+			override fun onKey(primaryCode: Int, keyCodes: IntArray) {
+				viewModel?.onCustomKeyClicked(primaryCode)
+			}
+
+			override fun onPress(arg0: Int) {}
+			override fun onRelease(primaryCode: Int) {}
+			override fun onText(text: CharSequence) {}
+			override fun swipeDown() {}
+			override fun swipeLeft() {}
+			override fun swipeRight() {}
+			override fun swipeUp() {}
+		}
+
+	private val configure2 = InputRoadNumber2Configurator()
+	private val configure3 = InputRoadNumber3Configurator()
+
+	private var pickIt: PickiT? = null
+	private var lastPickRequestCode = DEFAULT_INDEX
+
+	/**
+	 * 1..6
+	 */
+	private val currentRoadNumberInput: MutableLiveData<Int> = MutableLiveData()
+
+	override fun initStartValues() {
+		pickIt = PickiT(requireContext(), this, requireActivity())
+		activity?.requestPermissions(
+			arrayOf(
+				Manifest.permission.WRITE_EXTERNAL_STORAGE,
+				Manifest.permission.READ_EXTERNAL_STORAGE
+			), 101
+		)
 	}
 
-	private fun clearUI() {
-		binding?.txRoadNumber1?.text = ""
-		binding?.txRoadNumber2?.text = ""
-		binding?.txRoadNumber3?.text = ""
-		binding?.txRoadNumber4?.text = ""
-		binding?.txRoadNumber5?.text = ""
-		binding?.txRoadNumber6?.text = ""
+	override fun initUI() {
+		clearUI()
+		initKeyboard()
+	}
 
-		binding?.imRoadNumber1?.setImageResource(R.drawable.plus)
-		binding?.imRoadNumber2?.setImageResource(R.drawable.plus)
-		binding?.imRoadNumber3?.setImageResource(R.drawable.plus)
-		binding?.imRoadNumber4?.setImageResource(R.drawable.plus)
-		binding?.imRoadNumber5?.setImageResource(R.drawable.plus)
-		binding?.imRoadNumber6?.setImageResource(R.drawable.plus)
+	private fun initKeyboard() {
+		binding?.apply {
+			configureKeyboard(this)
+
+			keyboardview.keyboard =
+				Keyboard(requireContext(), R.xml.road_sign_keyboard_layout)
+			keyboardview.setOnKeyboardActionListener(mOnKeyboardActionListener)
+
+			requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+
+			keyboardview.isVisible = false
+
+			// Do not show the preview balloons
+			keyboardview.isPreviewEnabled = false
+		}
+	}
+
+	private fun configureKeyboard(fragmentMainBinding: FragmentMainBinding) =
+		with(fragmentMainBinding) {
+			configure2.configure(
+				contRoadNum1.ed2RoadNumber,
+				currentRoadNumberInput,
+				1,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure2.configure(
+				contRoadNum2.ed2RoadNumber,
+				currentRoadNumberInput,
+				2,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure2.configure(
+				contRoadNum3.ed2RoadNumber,
+				currentRoadNumberInput,
+				3,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure2.configure(
+				contRoadNum4.ed2RoadNumber,
+				currentRoadNumberInput,
+				4,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure2.configure(
+				contRoadNum5.ed2RoadNumber,
+				currentRoadNumberInput,
+				5,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure2.configure(
+				contRoadNum6.ed2RoadNumber,
+				currentRoadNumberInput,
+				6,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+
+			configure3.configure(
+				contRoadNum1.ed3RoadNumber,
+				currentRoadNumberInput,
+				1,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure3.configure(
+				contRoadNum2.ed3RoadNumber,
+				currentRoadNumberInput,
+				2,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure3.configure(
+				contRoadNum3.ed3RoadNumber,
+				currentRoadNumberInput,
+				3,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure3.configure(
+				contRoadNum4.ed3RoadNumber,
+				currentRoadNumberInput,
+				4,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure3.configure(
+				contRoadNum5.ed3RoadNumber,
+				currentRoadNumberInput,
+				5,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+			configure3.configure(
+				contRoadNum6.ed3RoadNumber,
+				currentRoadNumberInput,
+				6,
+				{ openCustomKeyboard() }
+			) { hideKeyboardAndElementsUnderKeyboard() }
+		}
+
+	private fun clearUI() {
+		binding?.contRoadNum1?.imAddRoadNum?.setImageResource(R.drawable.plus)
+		binding?.contRoadNum2?.imAddRoadNum?.setImageResource(R.drawable.plus)
+		binding?.contRoadNum3?.imAddRoadNum?.setImageResource(R.drawable.plus)
+		binding?.contRoadNum4?.imAddRoadNum?.setImageResource(R.drawable.plus)
+		binding?.contRoadNum5?.imAddRoadNum?.setImageResource(R.drawable.plus)
+		binding?.contRoadNum6?.imAddRoadNum?.setImageResource(R.drawable.plus)
 	}
 
 	override fun initButtons() {
 		binding?.apply {
+			constraintBackground.setOnClickListener {
+				showElementsUnderKeyboard()
+				hideCustomKeyboard()
+			}
 			btSaveRoadNumberList.setOnClickListener {
-				viewModel?.onSaveClicked { map ->
-					InputFileNameDialog { fileName: String ->
-						drawView2.setAndSaveRoadNumbers(map, fileName)
-					}.show(requireActivity().supportFragmentManager, "input_file_name")
-				}
+				handleSaveRoadNumberClicked()
 			}
-			imRoadNumber1.setOnClickListener {
-				onRoadNumberClicked(1)
+			btClearRoadNumberList.setOnClickListener {
+				handleClearRoadNumberClicked()
 			}
-			imRoadNumber2.setOnClickListener {
-				onRoadNumberClicked(2)
+			contRoadNum1.imAddRoadNum.setOnClickListener {
+				onRoadNumberClicked(INDEX_1)
 			}
-			imRoadNumber3.setOnClickListener {
-				onRoadNumberClicked(3)
+			contRoadNum2.imAddRoadNum.setOnClickListener {
+				onRoadNumberClicked(INDEX_2)
 			}
-			imRoadNumber4.setOnClickListener {
-				onRoadNumberClicked(4)
+			contRoadNum3.imAddRoadNum.setOnClickListener {
+				onRoadNumberClicked(INDEX_3)
 			}
-			imRoadNumber5.setOnClickListener {
-				onRoadNumberClicked(5)
+			contRoadNum4.imAddRoadNum.setOnClickListener {
+				onRoadNumberClicked(INDEX_4)
 			}
-			imRoadNumber6.setOnClickListener {
-				onRoadNumberClicked(6)
+			contRoadNum5.imAddRoadNum.setOnClickListener {
+				onRoadNumberClicked(INDEX_5)
 			}
+			contRoadNum6.imAddRoadNum.setOnClickListener {
+				onRoadNumberClicked(INDEX_6)
+			}
+			btEdit1.setOnClickListener {
+				onEditClicked(INDEX_1)
+			}
+			btEdit2.setOnClickListener {
+				onEditClicked(INDEX_2)
+			}
+			btEdit3.setOnClickListener {
+				onEditClicked(INDEX_3)
+			}
+			btEdit4.setOnClickListener {
+				onEditClicked(INDEX_4)
+			}
+			btEdit5.setOnClickListener {
+				onEditClicked(INDEX_5)
+			}
+			btEdit6.setOnClickListener {
+				onEditClicked(INDEX_6)
+			}
+			btDelete1.setOnClickListener {
+				onDeleteClicked(INDEX_1)
+			}
+			btDelete2.setOnClickListener {
+				onDeleteClicked(INDEX_2)
+			}
+			btDelete3.setOnClickListener {
+				onDeleteClicked(INDEX_3)
+			}
+			btDelete4.setOnClickListener {
+				onDeleteClicked(INDEX_4)
+			}
+			btDelete5.setOnClickListener {
+				onDeleteClicked(INDEX_5)
+			}
+			btDelete6.setOnClickListener {
+				onDeleteClicked(INDEX_6)
+			}
+		}
+	}
+
+	private fun handleClearRoadNumberClicked() {
+		binding?.apply {
+			showRoadNumberInput(
+				null,
+				contRoadNum1.ed2RoadNumber.root,
+				contRoadNum1.ed3RoadNumber.root,
+				contRoadNum1.imAddRoadNum
+			)
+			showRoadNumberInput(
+				null,
+				contRoadNum2.ed2RoadNumber.root,
+				contRoadNum2.ed3RoadNumber.root,
+				contRoadNum2.imAddRoadNum
+			)
+			showRoadNumberInput(
+				null,
+				contRoadNum3.ed2RoadNumber.root,
+				contRoadNum3.ed3RoadNumber.root,
+				contRoadNum3.imAddRoadNum
+			)
+			showRoadNumberInput(
+				null,
+				contRoadNum4.ed2RoadNumber.root,
+				contRoadNum4.ed3RoadNumber.root,
+				contRoadNum4.imAddRoadNum
+			)
+			showRoadNumberInput(
+				null,
+				contRoadNum5.ed2RoadNumber.root,
+				contRoadNum5.ed3RoadNumber.root,
+				contRoadNum5.imAddRoadNum
+			)
+			showRoadNumberInput(
+				null,
+				contRoadNum6.ed2RoadNumber.root,
+				contRoadNum6.ed3RoadNumber.root,
+				contRoadNum6.imAddRoadNum
+			)
+		}
+	}
+
+	private fun onDeleteClicked(i: Int) {
+		binding?.apply {
+			when (i) {
+				INDEX_1 -> showRoadNumberInput(
+					null,
+					contRoadNum1.ed2RoadNumber.root,
+					contRoadNum1.ed3RoadNumber.root,
+					contRoadNum1.imAddRoadNum
+				)
+				INDEX_2 -> showRoadNumberInput(
+					null,
+					contRoadNum2.ed2RoadNumber.root,
+					contRoadNum2.ed3RoadNumber.root,
+					contRoadNum2.imAddRoadNum
+				)
+				INDEX_3 -> showRoadNumberInput(
+					null,
+					contRoadNum3.ed2RoadNumber.root,
+					contRoadNum3.ed3RoadNumber.root,
+					contRoadNum3.imAddRoadNum
+				)
+				INDEX_4 -> showRoadNumberInput(
+					null,
+					contRoadNum4.ed2RoadNumber.root,
+					contRoadNum4.ed3RoadNumber.root,
+					contRoadNum4.imAddRoadNum
+				)
+				INDEX_5 -> showRoadNumberInput(
+					null,
+					contRoadNum5.ed2RoadNumber.root,
+					contRoadNum5.ed3RoadNumber.root,
+					contRoadNum5.imAddRoadNum
+				)
+				INDEX_6 -> showRoadNumberInput(
+					null,
+					contRoadNum6.ed2RoadNumber.root,
+					contRoadNum6.ed3RoadNumber.root,
+					contRoadNum6.imAddRoadNum
+				)
+			}
+		}
+	}
+
+	private fun onEditClicked(i: Int) {
+		onRoadNumberClicked(i)
+	}
+
+	private fun handleSaveRoadNumberClicked() {
+		viewModel?.onSaveClicked { map ->
+//					InputFileNameDialog { fileName: String ->
+//						drawView2.setAndSaveRoadNumbers(map, fileName)
+//					}.show(requireActivity().supportFragmentManager, "input_file_name")
 		}
 	}
 
 	override fun initObservers() {
 		viewModel?.let {
 			compositeDisposable?.add(
-				it.roadNumbersModelMap
+				it.roadSignChar
 					.subscribeOn(Schedulers.computation())
 					.observeOn(AndroidSchedulers.mainThread())
-					.subscribe({ map ->
-						roadNumbersModelMapHandle(map)
+					.subscribe({ roadSignChar ->
+						bindRoadNumberUI_OneChar(roadSignChar)
 					}, { err ->
 						err.printStackTrace()
 						Toast.makeText(requireContext(), err.message, Toast.LENGTH_SHORT).show()
@@ -92,54 +370,422 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
 		}
 	}
 
-	private fun roadNumbersModelMapHandle(map: HashMap<Int, RoadSignInfo>) {
-		binding?.apply {
-			map[1]?.let {
-				bindUI(it, txRoadNumber1, imRoadNumber1)
+	private fun bindRoadNumberUI_OneChar(roadSignChar: Char) {
+		(requireActivity().window.currentFocus as? TextInputEditText)?.let { edText ->
+			when (currentRoadNumberInput.value) {
+				INDEX_1 -> {
+					if (binding?.contRoadNum1?.ed2RoadNumber?.root?.isVisible == true) {
+						configure2.bindRoadNumber(
+							edText, binding?.contRoadNum1?.ed2RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							1,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					} else {
+						configure3.bindRoadNumber(
+							edText, binding?.contRoadNum1?.ed3RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							1,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					}
+				}
+				INDEX_2 -> {
+					if (binding?.contRoadNum2?.ed2RoadNumber?.root?.isVisible == true) {
+						configure2.bindRoadNumber(
+							edText, binding?.contRoadNum2?.ed2RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							2,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					} else {
+						configure3.bindRoadNumber(
+							edText, binding?.contRoadNum2?.ed3RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							2,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					}
+				}
+				INDEX_3 -> {
+					if (binding?.contRoadNum3?.ed2RoadNumber?.root?.isVisible == true) {
+						configure2.bindRoadNumber(
+							edText, binding?.contRoadNum3?.ed2RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							3,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					} else {
+						configure3.bindRoadNumber(
+							edText, binding?.contRoadNum3?.ed3RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							3,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					}
+				}
+				INDEX_4 -> {
+					if (binding?.contRoadNum4?.ed2RoadNumber?.root?.isVisible == true) {
+						configure2.bindRoadNumber(
+							edText, binding?.contRoadNum4?.ed2RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							4,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					} else {
+						configure3.bindRoadNumber(
+							edText, binding?.contRoadNum4?.ed3RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							4,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					}
+				}
+				INDEX_5 -> {
+					if (binding?.contRoadNum5?.ed2RoadNumber?.root?.isVisible == true) {
+						configure2.bindRoadNumber(
+							edText, binding?.contRoadNum5?.ed2RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							5,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					} else {
+						configure3.bindRoadNumber(
+							edText, binding?.contRoadNum5?.ed3RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							5,
+							{ hideCustomKeyboard() },
+						) {
+							showElementsUnderKeyboard()
+						}
+					}
+				}
+				INDEX_6 -> {
+					if (binding?.contRoadNum6?.ed2RoadNumber?.root?.isVisible == true) {
+						configure2.bindRoadNumber(
+							edText, binding?.contRoadNum6?.ed2RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							6,
+							{ hideCustomKeyboard() }
+						) {
+							showElementsUnderKeyboard()
+						}
+					} else {
+						configure3.bindRoadNumber(
+							edText, binding?.contRoadNum6?.ed3RoadNumber, roadSignChar,
+							currentRoadNumberInput,
+							6,
+							{ hideCustomKeyboard() }
+						) {
+							showElementsUnderKeyboard()
+						}
+					}
+				}
+				null -> {
+					Toast.makeText(requireContext(), "Some shit!", Toast.LENGTH_SHORT).show()
+				}
 			}
-			map[2]?.let {
-				bindUI(it, txRoadNumber2, imRoadNumber2)
-			}
-			map[3]?.let {
-				bindUI(it, txRoadNumber3, imRoadNumber3)
-			}
-			map[4]?.let {
-				bindUI(it, txRoadNumber4, imRoadNumber4)
-			}
-			map[5]?.let {
-				bindUI(it, txRoadNumber5, imRoadNumber5)
-			}
-			map[6]?.let {
-				bindUI(it, txRoadNumber6, imRoadNumber6)
-			}
+
 		}
 	}
 
-	private fun bindUI(road: RoadSignInfo, txView: TextView, imageView: ImageView) {
-		binding?.apply {
-			txView.apply {
-				isVisible = true
-				text = RoadNumberUiFormatter.format(road.sign)
-			}
-			imageView.isVisible = true
-			when(road.type) {
-				RoadSignType.RUS_2 -> imageView.setImageResource(R.drawable.f1)
-				RoadSignType.RUS_3 -> imageView.setImageResource(R.drawable.f2)
-			}
+	private fun showElementsUnderKeyboard() {
+		binding?.btSaveRoadNumberList?.apply {
+			isEnabled = true
+			isVisible = true
+		}
+		binding?.btClearRoadNumberList?.apply {
+			isEnabled = true
+			isVisible = true
+		}
+		binding?.contInfoText?.root?.apply {
+			isEnabled = true
+			isVisible = true
 		}
 	}
-
-
 
 	private fun onRoadNumberClicked(i: Int) {
-		ChooseRoadNumberDialog { type: RoadSignType ->
-			viewModel?.onAddRoadNumClicked(i, type)
-		}.show(requireActivity().supportFragmentManager, "choose_road_number")
+		ChooseRoadNumberDialog({ type: RoadSignType ->
+			handleRoadNumberInput(i, type)
+		}, {
+			openGallery(i)
+//			testImage(i)
+		}).show(requireActivity().supportFragmentManager, "choose_road_number")
+	}
+
+	private fun handleRoadNumberInput(i: Int, type: RoadSignType) {
+		binding?.apply {
+			when (i) {
+				INDEX_1 -> showRoadNumberInput(
+					type,
+					contRoadNum1.ed2RoadNumber.root,
+					contRoadNum1.ed3RoadNumber.root,
+					contRoadNum1.imAddRoadNum
+				)
+				INDEX_2 -> showRoadNumberInput(
+					type,
+					contRoadNum2.ed2RoadNumber.root,
+					contRoadNum2.ed3RoadNumber.root,
+					contRoadNum2.imAddRoadNum
+				)
+				INDEX_3 -> showRoadNumberInput(
+					type,
+					contRoadNum3.ed2RoadNumber.root,
+					contRoadNum3.ed3RoadNumber.root,
+					contRoadNum3.imAddRoadNum
+				)
+				INDEX_4 -> showRoadNumberInput(
+					type,
+					contRoadNum4.ed2RoadNumber.root,
+					contRoadNum4.ed3RoadNumber.root,
+					contRoadNum4.imAddRoadNum
+				)
+				INDEX_5 -> showRoadNumberInput(
+					type,
+					contRoadNum5.ed2RoadNumber.root,
+					contRoadNum5.ed3RoadNumber.root,
+					contRoadNum5.imAddRoadNum
+				)
+				INDEX_6 -> showRoadNumberInput(
+					type,
+					contRoadNum6.ed2RoadNumber.root,
+					contRoadNum6.ed3RoadNumber.root,
+					contRoadNum6.imAddRoadNum
+				)
+			}
+		}
+	}
+
+	private fun showRoadNumberInput(type: RoadSignType?, ed2: View, ed3: View, im: View) {
+		when (type) {
+			RoadSignType.RUS_2 -> {
+				ed2.isVisible = true
+				ed3.isVisible = false
+				im.isVisible = false
+			}
+			RoadSignType.RUS_3 -> {
+				ed2.isVisible = false
+				ed3.isVisible = true
+				im.isVisible = false
+			}
+			RoadSignType.IMAGE -> TODO()
+			null -> {
+				ed2.isVisible = false
+				ed3.isVisible = false
+				im.isVisible = true
+			}
+		}
+	}
+
+	private fun openCustomKeyboard() {
+		binding?.keyboardview?.isVisible = true
+		binding?.keyboardview?.isEnabled = true
+	}
+
+	private fun hideCustomKeyboard() {
+		binding?.keyboardview?.isVisible = false
+		binding?.keyboardview?.isEnabled = false
+	}
+
+	private fun hideKeyboardAndElementsUnderKeyboard() {
+		binding?.btSaveRoadNumberList?.apply {
+			isEnabled = false
+			isInvisible = true
+		}
+		binding?.btClearRoadNumberList?.apply {
+			isEnabled = false
+			isInvisible = true
+		}
+		binding?.contInfoText?.root?.apply {
+			isEnabled = false
+			isInvisible = true
+		}
+		CoroutineScope(Dispatchers.Main).launch {
+			delay(50)
+			(requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
+				.hideSoftInputFromWindow(
+					binding?.root?.windowToken,
+					0
+				)
+		}
+	}
+
+	override fun PickiTonUriReturned() {
+		// no-op
+	}
+
+	override fun PickiTonStartListener() {
+		// no-op
+	}
+
+	override fun PickiTonProgressUpdate(progress: Int) {
+		// no-op
+	}
+
+	override fun PickiTonCompleteListener(
+		path: String?,
+		wasDriveFile: Boolean,
+		wasUnknownProvider: Boolean,
+		wasSuccessful: Boolean,
+		reason: String?
+	) {
+		if (wasSuccessful) {
+			val uriSrc = Uri.parse(path.toString())
+			when (lastPickRequestCode) {
+				REQUEST_CODE_GET_PATH_1 -> {
+					viewModel?.onAddImage(INDEX_1, path.toString())
+					binding?.contRoadNum1?.imAddRoadNum?.setImageURI(uriSrc)
+				}
+				REQUEST_CODE_GET_PATH_2 -> {
+					viewModel?.onAddImage(INDEX_2, path.toString())
+					binding?.contRoadNum2?.imAddRoadNum?.setImageURI(uriSrc)
+				}
+				REQUEST_CODE_GET_PATH_3 -> {
+					viewModel?.onAddImage(INDEX_3, path.toString())
+					binding?.contRoadNum3?.imAddRoadNum?.setImageURI(uriSrc)
+				}
+				REQUEST_CODE_GET_PATH_4 -> {
+					viewModel?.onAddImage(INDEX_4, path.toString())
+					binding?.contRoadNum4?.imAddRoadNum?.setImageURI(uriSrc)
+				}
+				REQUEST_CODE_GET_PATH_5 -> {
+					viewModel?.onAddImage(INDEX_5, path.toString())
+					binding?.contRoadNum5?.imAddRoadNum?.setImageURI(uriSrc)
+				}
+				REQUEST_CODE_GET_PATH_6 -> {
+					viewModel?.onAddImage(INDEX_6, path.toString())
+					binding?.contRoadNum6?.imAddRoadNum?.setImageURI(uriSrc)
+				}
+				else -> {
+					Toast.makeText(
+						requireContext(),
+						PICK_ERROR_MESSAGE,
+						Toast.LENGTH_SHORT
+					).show()
+				}
+			}
+		} else {
+			Toast.makeText(requireContext(), "$reason", Toast.LENGTH_SHORT)
+				.show()
+		}
+	}
+
+	override fun PickiTonMultipleCompleteListener(
+		paths: ArrayList<String>?,
+		wasSuccessful: Boolean,
+		Reason: String?
+	) {
+		// no-op
+	}
+
+	private fun testImage(i: Int) {
+		when (i) {
+			INDEX_1 -> binding?.contRoadNum1?.imAddRoadNum?.setImageResource(R.drawable.back_image)
+			INDEX_2 -> binding?.contRoadNum2?.imAddRoadNum?.setImageResource(R.drawable.back_image)
+			INDEX_3 -> binding?.contRoadNum3?.imAddRoadNum?.setImageResource(R.drawable.back_image)
+			INDEX_4 -> binding?.contRoadNum4?.imAddRoadNum?.setImageResource(R.drawable.back_image)
+			INDEX_5 -> binding?.contRoadNum5?.imAddRoadNum?.setImageResource(R.drawable.back_image)
+			INDEX_6 -> binding?.contRoadNum6?.imAddRoadNum?.setImageResource(R.drawable.back_image)
+		}
+	}
+
+	private fun roadNumbersModelMapHandle(map: HashMap<Int, RoadSignInfo>) {
+		binding?.apply {
+			map[INDEX_1]?.let {
+				bindUI(it, contRoadNum1.imAddRoadNum, Uri.parse(it.signOrUri))
+			}
+			map[INDEX_2]?.let {
+				bindUI(it, contRoadNum2.imAddRoadNum, Uri.parse(it.signOrUri))
+			}
+			map[INDEX_3]?.let {
+				bindUI(it, contRoadNum3.imAddRoadNum, Uri.parse(it.signOrUri))
+			}
+			map[INDEX_4]?.let {
+				bindUI(it, contRoadNum4.imAddRoadNum, Uri.parse(it.signOrUri))
+			}
+			map[INDEX_5]?.let {
+				bindUI(it, contRoadNum5.imAddRoadNum, Uri.parse(it.signOrUri))
+			}
+			map[INDEX_6]?.let {
+				bindUI(it, contRoadNum6.imAddRoadNum, Uri.parse(it.signOrUri))
+			}
+		}
+	}
+
+	private fun bindUI(road: RoadSignInfo, imageView: ImageView, uri: Uri? = null) {
+		binding?.apply {
+			if (road.type == RoadSignType.IMAGE) {
+				imageView.isVisible = true
+				imageView.setImageURI(uri)
+			}
+		}
+	}
+
+	private fun openGallery(i: Int) {
+		val reqCode = when (i) {
+			INDEX_1 -> REQUEST_CODE_GET_PATH_1
+			INDEX_2 -> REQUEST_CODE_GET_PATH_2
+			INDEX_3 -> REQUEST_CODE_GET_PATH_3
+			INDEX_4 -> REQUEST_CODE_GET_PATH_4
+			INDEX_5 -> REQUEST_CODE_GET_PATH_5
+			INDEX_6 -> REQUEST_CODE_GET_PATH_6
+			else -> DEFAULT_INDEX
+		}
+
+		val intent = Intent()
+		intent.type = IMAGE_TYPE
+		intent.action = Intent.ACTION_OPEN_DOCUMENT
+		startActivityForResult(intent, reqCode)
+	}
+
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+		super.onActivityResult(requestCode, resultCode, data)
+		if (resultCode == AppCompatActivity.RESULT_OK) {
+			lastPickRequestCode = requestCode
+			pickIt?.getPath(data?.data, Build.VERSION.SDK_INT)
+		}
 	}
 
 	companion object {
 
+		private const val DEFAULT_INDEX = -1
+		private const val INDEX_1 = 1
+		private const val INDEX_2 = 2
+		private const val INDEX_3 = 3
+		private const val INDEX_4 = 4
+		private const val INDEX_5 = 5
+		private const val INDEX_6 = 6
+
+		private const val IMAGE_TYPE = "image/*"
+		private const val PICK_ERROR_MESSAGE = "Неизвестная проблема с выбором изображения"
+
+		private const val REQUEST_CODE_GET_PATH_1 = 201
+		private const val REQUEST_CODE_GET_PATH_2 = 202
+		private const val REQUEST_CODE_GET_PATH_3 = 203
+		private const val REQUEST_CODE_GET_PATH_4 = 204
+		private const val REQUEST_CODE_GET_PATH_5 = 205
+		private const val REQUEST_CODE_GET_PATH_6 = 206
+
 		@JvmStatic
 		fun newInstance() = MainFragment()
 	}
+
 }

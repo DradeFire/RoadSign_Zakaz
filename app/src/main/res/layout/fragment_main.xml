@@ -7,6 +7,7 @@
     tools:context=".presentation.features.main.MainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,167 +21,265 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imRoadNumber1"
-            android:layout_width="250dp"
-            android:layout_height="65dp"
+        <include
+            android:id="@+id/contRoadNum1"
+            layout="@layout/all_in__input_and_image"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/plus"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber2"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/btEdit1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imRoadNumber2"
-            android:layout_width="250dp"
-            android:layout_height="65dp"
-            android:src="@drawable/plus"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber3"
+            android:id="@+id/btDelete1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_delete_one"
+            app:layout_constraintBottom_toBottomOf="@+id/btEdit1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber1" />
+            app:layout_constraintStart_toEndOf="@+id/btEdit1"
+            app:layout_constraintTop_toTopOf="@+id/btEdit1" />
 
         <ImageView
-            android:id="@+id/imRoadNumber3"
-            android:layout_width="250dp"
-            android:layout_height="65dp"
+            android:id="@+id/btEdit1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/contRoadNum1"
+            app:layout_constraintEnd_toStartOf="@+id/btDelete1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/contRoadNum1"
+            app:layout_constraintTop_toTopOf="@+id/contRoadNum1" />
+
+        <include
+            android:id="@+id/contRoadNum2"
+            layout="@layout/all_in__input_and_image"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/plus"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber4"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/btEdit2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber2" />
+            app:layout_constraintTop_toBottomOf="@+id/contRoadNum1" />
 
         <ImageView
-            android:id="@+id/imRoadNumber4"
-            android:layout_width="250dp"
-            android:layout_height="65dp"
-            android:src="@drawable/plus"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber5"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/btEdit2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/contRoadNum2"
+            app:layout_constraintEnd_toStartOf="@+id/btDelete2"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber3" />
+            app:layout_constraintStart_toEndOf="@+id/contRoadNum2"
+            app:layout_constraintTop_toTopOf="@+id/contRoadNum2" />
 
         <ImageView
-            android:id="@+id/imRoadNumber5"
-            android:layout_width="250dp"
-            android:layout_height="65dp"
-            android:src="@drawable/plus"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber6"
+            android:id="@+id/btDelete2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_delete_one"
+            app:layout_constraintBottom_toBottomOf="@+id/btEdit2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btEdit2"
+            app:layout_constraintTop_toTopOf="@+id/btEdit2" />
+
+        <include
+            android:id="@+id/contRoadNum3"
+            layout="@layout/all_in__input_and_image"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/plus"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/btEdit3"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber4" />
+            app:layout_constraintTop_toBottomOf="@+id/contRoadNum2" />
 
         <ImageView
-            android:id="@+id/imRoadNumber6"
-            android:layout_width="250dp"
-            android:layout_height="65dp"
-            android:src="@drawable/plus"
-            app:layout_constraintBottom_toTopOf="@+id/btSaveRoadNumberList"
+            android:id="@+id/btEdit3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/contRoadNum3"
+            app:layout_constraintEnd_toStartOf="@+id/btDelete3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/contRoadNum3"
+            app:layout_constraintTop_toTopOf="@+id/contRoadNum3" />
+
+        <ImageView
+            android:id="@+id/btDelete3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/bt_delete_one"
+            app:layout_constraintBottom_toBottomOf="@+id/btEdit3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btEdit3"
+            app:layout_constraintTop_toTopOf="@+id/btEdit3" />
+
+        <include
+            android:id="@+id/contRoadNum4"
+            layout="@layout/all_in__input_and_image"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/plus"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/btEdit4"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber5" />
+            app:layout_constraintTop_toBottomOf="@+id/contRoadNum3" />
 
-        <TextView
-            android:id="@+id/txRoadNumber1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/roadn_font"
-            android:text="АВЕ"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber1"
-            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber1"
-            app:layout_constraintStart_toStartOf="@+id/imRoadNumber1" />
+        <ImageView
+            android:id="@+id/btDelete4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/bt_delete_one"
+            app:layout_constraintBottom_toBottomOf="@+id/btEdit4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btEdit4"
+            app:layout_constraintTop_toTopOf="@+id/btEdit4" />
 
-        <TextView
-            android:id="@+id/txRoadNumber2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/roadn_font"
-            android:text="АВЕ"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber2"
-            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber2"
-            app:layout_constraintStart_toStartOf="@+id/imRoadNumber2" />
+        <ImageView
+            android:id="@+id/btEdit4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/contRoadNum4"
+            app:layout_constraintEnd_toStartOf="@+id/btDelete4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/contRoadNum4"
+            app:layout_constraintTop_toTopOf="@+id/contRoadNum4" />
 
-        <TextView
-            android:id="@+id/txRoadNumber3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/roadn_font"
-            android:text="АВЕ"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber3"
-            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber3"
-            app:layout_constraintStart_toStartOf="@+id/imRoadNumber3" />
+        <include
+            android:id="@+id/contRoadNum5"
+            layout="@layout/all_in__input_and_image"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/plus"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/btEdit5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contRoadNum4" />
 
-        <TextView
-            android:id="@+id/txRoadNumber4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/roadn_font"
-            android:text="АВЕ"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber4"
-            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber4"
-            app:layout_constraintStart_toStartOf="@+id/imRoadNumber4" />
+        <ImageView
+            android:id="@+id/btEdit5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/contRoadNum5"
+            app:layout_constraintEnd_toStartOf="@+id/btDelete5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/contRoadNum5"
+            app:layout_constraintTop_toTopOf="@+id/contRoadNum5" />
 
-        <TextView
-            android:id="@+id/txRoadNumber5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/roadn_font"
-            android:text="АВЕ"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber5"
-            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber5"
-            app:layout_constraintStart_toStartOf="@+id/imRoadNumber5" />
+        <ImageView
+            android:id="@+id/btDelete5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/bt_delete_one"
+            app:layout_constraintBottom_toBottomOf="@+id/btEdit5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btEdit5"
+            app:layout_constraintTop_toTopOf="@+id/btEdit5" />
 
-        <TextView
-            android:id="@+id/txRoadNumber6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/roadn_font"
-            android:text="АВЕ"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/imRoadNumber6"
-            app:layout_constraintEnd_toEndOf="@+id/imRoadNumber6"
-            app:layout_constraintStart_toStartOf="@+id/imRoadNumber6" />
+        <include
+            android:id="@+id/contRoadNum6"
+            layout="@layout/all_in__input_and_image"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/plus"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/btEdit6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contRoadNum5" />
+
+        <ImageView
+            android:id="@+id/btDelete6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/bt_delete_one"
+            app:layout_constraintBottom_toBottomOf="@+id/btEdit6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btEdit6"
+            app:layout_constraintTop_toTopOf="@+id/btEdit6" />
+
+        <ImageView
+            android:id="@+id/btEdit6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bt_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/contRoadNum6"
+            app:layout_constraintEnd_toStartOf="@+id/btDelete6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/contRoadNum6"
+            app:layout_constraintTop_toTopOf="@+id/contRoadNum6" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btSaveRoadNumberList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:background="@drawable/bt_save"
-            android:text="Сохранить шаблон"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btClearRoadNumberList"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imRoadNumber6" />
+            app:layout_constraintTop_toBottomOf="@+id/contRoadNum6" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btClearRoadNumberList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_delete_all"
+            app:layout_constraintBottom_toBottomOf="@+id/btSaveRoadNumberList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btSaveRoadNumberList"
+            app:layout_constraintTop_toTopOf="@+id/btSaveRoadNumberList" />
+
+        <include
+            android:id="@+id/contInfoText"
+            layout="@layout/text__info_text_layout"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.inputmethodservice.KeyboardView
+            android:id="@+id/keyboardview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:keyBackground="@color/keyboard__key_background"
+            android:keyTextColor="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
