@@ -41,7 +41,6 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/bt_save"
-        android:text="Сохранить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/etInputFilename"
         app:layout_constraintStart_toStartOf="@+id/etInputFilename"

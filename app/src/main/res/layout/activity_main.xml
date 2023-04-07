@@ -6,15 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".presentation.activity.MainActivity">
 
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/container"
-        android:name="com.bajenovsasha.roadsign_zakaz.presentation.features.main.MainFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#CDB9B9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/btOpenMenu"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_menu"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/container"
+                android:name="com.bajenovsasha.roadsign_zakaz.presentation.features.main.MainFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            </androidx.fragment.app.FragmentContainerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/navigation"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#F5F5F5">
+
+
+            <ImageView
+                android:id="@+id/btOpenEditor"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bt_open_editor" />
+
+            <ImageView
+                android:id="@+id/btOpenInstruction"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/btOpenEditor"
+                app:layout_constraintStart_toStartOf="@+id/btOpenEditor"
+                app:layout_constraintTop_toBottomOf="@+id/btOpenEditor"
+                app:srcCompat="@drawable/bt_open_instruction" />
+
+            <ImageView
+                android:id="@+id/btOpenContacts"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/btOpenInstruction"
+                app:layout_constraintStart_toStartOf="@+id/btOpenInstruction"
+                app:layout_constraintTop_toBottomOf="@+id/btOpenInstruction"
+                app:srcCompat="@drawable/bt_open_contacts" />
+
+            <ImageView
+                android:id="@+id/btOpenAbout"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/btOpenContacts"
+                app:layout_constraintStart_toStartOf="@+id/btOpenContacts"
+                app:layout_constraintTop_toBottomOf="@+id/btOpenContacts"
+                app:srcCompat="@drawable/bt_open_about" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

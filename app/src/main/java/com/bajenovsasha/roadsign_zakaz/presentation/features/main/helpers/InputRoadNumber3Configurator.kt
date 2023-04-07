@@ -131,15 +131,15 @@ class InputRoadNumber3Configurator {
 
 	fun getFullString(ed3: InputRoadNumber3Binding): String {
 		return StringBuilder().apply {
+			append(ed3.edR3Text1.text ?: ' ')
 			append(ed3.edR3Num1.text ?: ' ')
 			append(ed3.edR3Num2.text ?: ' ')
 			append(ed3.edR3Num3.text ?: ' ')
+			append(ed3.edR3Text2.text ?: ' ')
+			append(ed3.edR3Text3.text ?: ' ')
 			append(ed3.edR3Num4.text ?: ' ')
 			append(ed3.edR3Num5.text ?: ' ')
 			append(ed3.edR3Num6.text ?: ' ')
-			append(ed3.edR3Text1.text ?: ' ')
-			append(ed3.edR3Text2.text ?: ' ')
-			append(ed3.edR3Text3.text ?: ' ')
 		}.toString()
 	}
 

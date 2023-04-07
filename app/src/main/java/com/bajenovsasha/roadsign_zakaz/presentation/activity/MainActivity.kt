@@ -20,7 +20,15 @@ class MainActivity : AppCompatActivity() {
 		if (binding == null) binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding?.root)
 
+		initButtons()
+
 //		(applicationContext as? App)?.router?.newRootChain(Screens.roadSignScreen(1, RoadSignType.RUS_2))
+	}
+
+	private fun initButtons() {
+		binding?.btOpenMenu?.setOnClickListener {
+			binding?.drawer?.open()
+		}
 	}
 
 	override fun onResumeFragments() {

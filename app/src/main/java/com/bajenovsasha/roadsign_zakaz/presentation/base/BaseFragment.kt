@@ -51,26 +51,31 @@ abstract class BaseFragment<B : ViewBinding, VM : BaseViewModel> : Fragment() {
 		initRecycler()
 		initObservers()
 		initButtons()
+		initOnBackPressed()
 	}
 
 	protected open fun initUI() {
-
+		// no-op
 	}
 
 	protected open fun initObservers() {
-
+		// no-op
 	}
 
 	protected open fun initStartValues() {
-
+		// no-op
 	}
 
 	protected open fun initButtons() {
-
+		// no-op
 	}
 
 	protected open fun initRecycler() {
+		// no-op
+	}
 
+	protected open fun initOnBackPressed() {
+		// no-op
 	}
 
 	override fun onDetach() {

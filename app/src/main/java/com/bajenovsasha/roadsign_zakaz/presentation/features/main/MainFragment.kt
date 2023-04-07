@@ -14,6 +14,8 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
+import android.window.OnBackInvokedCallback
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -360,73 +362,73 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 	private fun getFullMapOfInputs(): HashMap<Int, RoadSignInfo> {
 		binding?.apply {
 			val map = hashMapOf<Int, RoadSignInfo>()
-			map[INDEX_1] = if (contRoadNum1.ed2RoadNumber.root.isVisible) {
-				RoadSignInfo(
+			if (contRoadNum1.ed2RoadNumber.root.isVisible) {
+				map[INDEX_1] = RoadSignInfo(
 					RoadSignType.RUS_2,
 					configuratorRN2.getFullString(contRoadNum1.ed2RoadNumber)
 				)
-			} else {
-				RoadSignInfo(
+			} else if (contRoadNum1.ed3RoadNumber.root.isVisible) {
+				map[INDEX_1] = RoadSignInfo(
 					RoadSignType.RUS_3,
 					configuratorRN3.getFullString(contRoadNum1.ed3RoadNumber)
 				)
 			}
 
-			map[INDEX_2] = if (contRoadNum2.ed2RoadNumber.root.isVisible) {
-				RoadSignInfo(
+			if (contRoadNum2.ed2RoadNumber.root.isVisible) {
+				map[INDEX_2] = RoadSignInfo(
 					RoadSignType.RUS_2,
 					configuratorRN2.getFullString(contRoadNum2.ed2RoadNumber)
 				)
-			} else {
-				RoadSignInfo(
+			} else if (contRoadNum2.ed3RoadNumber.root.isVisible) {
+				map[INDEX_2] = RoadSignInfo(
 					RoadSignType.RUS_3,
 					configuratorRN3.getFullString(contRoadNum2.ed3RoadNumber)
 				)
 			}
 
-			map[INDEX_3] = if (contRoadNum3.ed2RoadNumber.root.isVisible) {
-				RoadSignInfo(
+			if (contRoadNum3.ed2RoadNumber.root.isVisible) {
+				map[INDEX_3] = RoadSignInfo(
 					RoadSignType.RUS_2,
 					configuratorRN2.getFullString(contRoadNum3.ed2RoadNumber)
 				)
-			} else {
-				RoadSignInfo(
+			} else if (contRoadNum3.ed3RoadNumber.root.isVisible) {
+				map[INDEX_3] = RoadSignInfo(
 					RoadSignType.RUS_3,
 					configuratorRN3.getFullString(contRoadNum3.ed3RoadNumber)
 				)
 			}
 
-			map[INDEX_4] = if (contRoadNum4.ed2RoadNumber.root.isVisible) {
-				RoadSignInfo(
+			if (contRoadNum4.ed2RoadNumber.root.isVisible) {
+				map[INDEX_4] = RoadSignInfo(
 					RoadSignType.RUS_2,
 					configuratorRN2.getFullString(contRoadNum4.ed2RoadNumber)
 				)
-			} else {
-				RoadSignInfo(
+			} else if (contRoadNum4.ed3RoadNumber.root.isVisible) {
+				map[INDEX_4] = RoadSignInfo(
 					RoadSignType.RUS_3,
 					configuratorRN3.getFullString(contRoadNum4.ed3RoadNumber)
 				)
 			}
 
-			map[INDEX_5] = if (contRoadNum5.ed2RoadNumber.root.isVisible) {
-				RoadSignInfo(
+			if (contRoadNum5.ed2RoadNumber.root.isVisible) {
+				map[INDEX_5] = RoadSignInfo(
 					RoadSignType.RUS_2,
 					configuratorRN2.getFullString(contRoadNum5.ed2RoadNumber)
 				)
-			} else {
-				RoadSignInfo(
+			} else if (contRoadNum5.ed3RoadNumber.root.isVisible) {
+				map[INDEX_5] = RoadSignInfo(
 					RoadSignType.RUS_3,
 					configuratorRN3.getFullString(contRoadNum5.ed3RoadNumber)
 				)
 			}
 
-			map[INDEX_6] = if (contRoadNum6.ed2RoadNumber.root.isVisible) {
-				RoadSignInfo(
+			if (contRoadNum6.ed2RoadNumber.root.isVisible) {
+				map[INDEX_6] = RoadSignInfo(
 					RoadSignType.RUS_2,
 					configuratorRN2.getFullString(contRoadNum6.ed2RoadNumber)
 				)
-			} else {
-				RoadSignInfo(
+			} else if (contRoadNum6.ed3RoadNumber.root.isVisible) {
+				map[INDEX_6] = RoadSignInfo(
 					RoadSignType.RUS_3,
 					configuratorRN3.getFullString(contRoadNum6.ed3RoadNumber)
 				)
@@ -609,8 +611,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 		ChooseRoadNumberDialog({ type: RoadSignType ->
 			handleRoadNumberInput(i, type)
 		}, {
-			openGallery(i)
-//			testImage(i)
+//			openGallery(i)
+			testImage(i)
 		}).show(requireActivity().supportFragmentManager, "choose_road_number")
 	}
 
@@ -716,6 +718,23 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					0
 				)
 		}
+	}
+
+	override fun initOnBackPressed() {
+		requireActivity()
+			.onBackPressedDispatcher
+			.addCallback(this, object : OnBackPressedCallback(true) {
+				override fun handleOnBackPressed() {
+					if (binding?.keyboardview?.isEnabled == true) {
+						showElementsUnderKeyboard()
+						hideCustomKeyboard()
+					} else {
+						isEnabled = false
+						requireActivity().onBackPressed()
+					}
+				}
+
+			})
 	}
 
 	override fun PickiTonUriReturned() {

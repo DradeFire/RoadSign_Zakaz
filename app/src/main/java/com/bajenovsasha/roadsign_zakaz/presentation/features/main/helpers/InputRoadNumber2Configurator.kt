@@ -121,14 +121,14 @@ class InputRoadNumber2Configurator {
 
 	fun getFullString(etInputRN: InputRoadNumber2Binding): String {
 		return StringBuilder().apply {
+			append(etInputRN.edR2Text1.text ?: ' ')
 			append(etInputRN.edR2Num1.text ?: ' ')
 			append(etInputRN.edR2Num2.text ?: ' ')
 			append(etInputRN.edR2Num3.text ?: ' ')
-			append(etInputRN.edR2Num4.text ?: ' ')
-			append(etInputRN.edR2Num5.text ?: ' ')
-			append(etInputRN.edR2Text1.text ?: ' ')
 			append(etInputRN.edR2Text2.text ?: ' ')
 			append(etInputRN.edR2Text3.text ?: ' ')
+			append(etInputRN.edR2Num4.text ?: ' ')
+			append(etInputRN.edR2Num5.text ?: ' ')
 		}.toString()
 	}
 
