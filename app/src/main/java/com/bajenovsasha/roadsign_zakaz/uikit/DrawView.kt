@@ -292,12 +292,18 @@ class DrawView @JvmOverloads constructor(
 							}
 						}
 						RoadSignType.IMAGE -> {
-							val bitmapIm = MediaStore.Images.Media.getBitmap(
-								context.contentResolver,
-								Uri.fromFile(File(roadSignInfo.signOrUri))
-							)
+//							val bitmapIm = MediaStore.Images.Media.getBitmap(
+//								context.contentResolver,
+//								Uri.fromFile(File(roadSignInfo.signOrUri))
+//							)
+//							bitmapCanvas.drawBitmap(
+//								bitmapIm,
+//								w,
+//								h,
+//								paint
+//							)
 							bitmapCanvas.drawBitmap(
-								bitmapIm,
+								bitmapImage,
 								w,
 								h,
 								paint

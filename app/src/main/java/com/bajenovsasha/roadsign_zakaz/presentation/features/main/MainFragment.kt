@@ -373,6 +373,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum1.ed3RoadNumber)
 				)
 			}
+//			else {
+//				map[INDEX_1] = RoadSignInfo(
+//					RoadSignType.IMAGE,
+//					""
+//				)
+//			}
 
 			if (contRoadNum2.ed2RoadNumber.root.isVisible) {
 				map[INDEX_2] = RoadSignInfo(
@@ -385,6 +391,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum2.ed3RoadNumber)
 				)
 			}
+//			else {
+//				map[INDEX_2] = RoadSignInfo(
+//					RoadSignType.IMAGE,
+//					""
+//				)
+//			}
 
 			if (contRoadNum3.ed2RoadNumber.root.isVisible) {
 				map[INDEX_3] = RoadSignInfo(
@@ -397,6 +409,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum3.ed3RoadNumber)
 				)
 			}
+//			else {
+//				map[INDEX_3] = RoadSignInfo(
+//					RoadSignType.IMAGE,
+//					""
+//				)
+//			}
 
 			if (contRoadNum4.ed2RoadNumber.root.isVisible) {
 				map[INDEX_4] = RoadSignInfo(
@@ -409,6 +427,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum4.ed3RoadNumber)
 				)
 			}
+//			else {
+//				map[INDEX_4] = RoadSignInfo(
+//					RoadSignType.IMAGE,
+//					""
+//				)
+//			}
 
 			if (contRoadNum5.ed2RoadNumber.root.isVisible) {
 				map[INDEX_5] = RoadSignInfo(
@@ -421,6 +445,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum5.ed3RoadNumber)
 				)
 			}
+//			else {
+//				map[INDEX_5] = RoadSignInfo(
+//					RoadSignType.IMAGE,
+//					""
+//				)
+//			}
 
 			if (contRoadNum6.ed2RoadNumber.root.isVisible) {
 				map[INDEX_6] = RoadSignInfo(
@@ -433,6 +463,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum6.ed3RoadNumber)
 				)
 			}
+//			else {
+//				map[INDEX_6] = RoadSignInfo(
+//					RoadSignType.IMAGE,
+//					""
+//				)
+//			}
 
 			return map
 		}
@@ -663,7 +699,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 		type: RoadSignType?,
 		ed2: InputRoadNumber2Binding,
 		ed3: InputRoadNumber3Binding,
-		im: View
+		im: ImageView
 	) {
 		configuratorRN2.clear(ed2)
 		configuratorRN3.clear(ed3)
@@ -683,6 +719,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				ed2.root.isVisible = false
 				ed3.root.isVisible = false
 				im.isVisible = true
+				im.setImageResource(R.drawable.plus)
 			}
 		}
 	}
