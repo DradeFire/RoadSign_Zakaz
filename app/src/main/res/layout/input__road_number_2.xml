@@ -35,7 +35,7 @@
         android:nextFocusForward="@+id/edR2Num1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edR2Text1" />
+        app:layout_constraintStart_toEndOf="@+id/edR2Num3" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Num1"
@@ -50,7 +50,7 @@
         android:nextFocusForward="@+id/edR2Num2"
         android:textSize="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edR2Text2"
+        app:layout_constraintStart_toEndOf="@+id/edR2Text1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -98,7 +98,7 @@
         android:nextFocusForward="@+id/edR2Num4"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edR2Num3" />
+        app:layout_constraintStart_toEndOf="@+id/edR2Text2" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Num4"
