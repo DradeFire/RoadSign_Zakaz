@@ -132,4 +132,8 @@ class InputRoadNumber2Configurator {
 		}.toString()
 	}
 
+	fun initCursor(ed2: InputRoadNumber2Binding) {
+		ed2.edR2Text1.requestFocus()
+	}
+
 }

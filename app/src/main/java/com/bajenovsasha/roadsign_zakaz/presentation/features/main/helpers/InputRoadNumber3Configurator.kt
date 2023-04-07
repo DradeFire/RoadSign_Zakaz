@@ -143,4 +143,8 @@ class InputRoadNumber3Configurator {
 		}.toString()
 	}
 
+	fun initCursor(ed3: InputRoadNumber3Binding) {
+		ed3.edR3Text1.requestFocus()
+	}
+
 }

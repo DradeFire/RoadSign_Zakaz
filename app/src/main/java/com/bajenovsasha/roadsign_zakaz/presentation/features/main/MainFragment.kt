@@ -8,13 +8,11 @@ import android.inputmethodservice.KeyboardView
 import android.net.Uri
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
-import android.window.OnBackInvokedCallback
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
@@ -708,11 +706,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				ed2.root.isVisible = true
 				ed3.root.isVisible = false
 				im.isVisible = false
+				configuratorRN2.initCursor(ed2)
 			}
 			RoadSignType.RUS_3 -> {
 				ed2.root.isVisible = false
 				ed3.root.isVisible = true
 				im.isVisible = false
+				configuratorRN3.initCursor(ed3)
 			}
 			RoadSignType.IMAGE -> TODO()
 			null -> {
