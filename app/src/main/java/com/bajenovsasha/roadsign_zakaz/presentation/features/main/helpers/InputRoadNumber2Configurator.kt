@@ -88,21 +88,88 @@ class InputRoadNumber2Configurator {
 			R.id.edR2Text3 -> if (RoadNumberFormatter_OneChar.validChar(roadSignChar)) roadSignChar else null
 			else -> null
 		}
-		char?.let { charIt ->
-			edText.setText(charIt.toString())
-			when (edText.nextFocusForwardId) {
-				R.id.edR2Num1 -> etInputRN?.edR2Num1?.requestFocus()
-				R.id.edR2Num2 -> etInputRN?.edR2Num2?.requestFocus()
-				R.id.edR2Num3 -> etInputRN?.edR2Num3?.requestFocus()
-				R.id.edR2Num4 -> etInputRN?.edR2Num4?.requestFocus()
-				R.id.edR2Num5 -> etInputRN?.edR2Num5?.requestFocus()
-				R.id.edR2Text1 -> etInputRN?.edR2Text1?.requestFocus()
-				R.id.edR2Text2 -> etInputRN?.edR2Text2?.requestFocus()
-				R.id.edR2Text3 -> etInputRN?.edR2Text3?.requestFocus()
-				else -> {
-					etInputRN?.edR2Num5?.clearFocus()
-					hideCustomKeyboard()
-					showButton()
+		if (char == ' ') {
+			when (edText.id) {
+				R.id.edR2Num1 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Num1?.setText("")
+					else {
+						etInputRN?.edR2Text1?.setText("")
+						etInputRN?.edR2Text1?.requestFocus()
+					}
+				}
+				R.id.edR2Num2 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Num2?.setText("")
+					else {
+						etInputRN?.edR2Num1?.setText("")
+						etInputRN?.edR2Num1?.requestFocus()
+					}
+				}
+				R.id.edR2Num3 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Num3?.setText("")
+					else {
+						etInputRN?.edR2Num2?.setText("")
+						etInputRN?.edR2Num2?.requestFocus()
+					}
+				}
+				R.id.edR2Num4 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Num4?.setText("")
+					else {
+						etInputRN?.edR2Text3?.setText("")
+						etInputRN?.edR2Text3?.requestFocus()
+					}
+				}
+				R.id.edR2Num5 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Num5?.setText("")
+					else {
+						etInputRN?.edR2Num4?.setText("")
+						etInputRN?.edR2Num4?.requestFocus()
+					}
+				}
+				R.id.edR2Text1 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Text1?.setText("")
+				}
+				R.id.edR2Text2 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Text2?.setText("")
+					else {
+						etInputRN?.edR2Num3?.setText("")
+						etInputRN?.edR2Num3?.requestFocus()
+					}
+				}
+				R.id.edR2Text3 -> {
+					if (edText.text?.length == 1)
+						etInputRN?.edR2Text3?.setText("")
+					else {
+						etInputRN?.edR2Text2?.setText("")
+						etInputRN?.edR2Text2?.requestFocus()
+					}
+				}
+				else -> null
+			}
+		}
+		else {
+			char?.let { charIt ->
+				edText.setText(charIt.toString())
+				when (edText.nextFocusForwardId) {
+					R.id.edR2Num1 -> etInputRN?.edR2Num1?.requestFocus()
+					R.id.edR2Num2 -> etInputRN?.edR2Num2?.requestFocus()
+					R.id.edR2Num3 -> etInputRN?.edR2Num3?.requestFocus()
+					R.id.edR2Num4 -> etInputRN?.edR2Num4?.requestFocus()
+					R.id.edR2Num5 -> etInputRN?.edR2Num5?.requestFocus()
+					R.id.edR2Text1 -> etInputRN?.edR2Text1?.requestFocus()
+					R.id.edR2Text2 -> etInputRN?.edR2Text2?.requestFocus()
+					R.id.edR2Text3 -> etInputRN?.edR2Text3?.requestFocus()
+					else -> {
+						etInputRN?.edR2Num5?.clearFocus()
+						hideCustomKeyboard()
+						showButton()
+					}
 				}
 			}
 		}
@@ -132,7 +199,8 @@ class InputRoadNumber2Configurator {
 		}.toString()
 	}
 
-	fun initCursor(ed2: InputRoadNumber2Binding) {
+	fun initCursor(ed2: InputRoadNumber2Binding, function: () -> Unit) {
+		function()
 		ed2.edR2Text1.requestFocus()
 	}
 

@@ -14,14 +14,17 @@
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
-        android:hint="А"
+        android:hint="М"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:maxLength="1"
         android:nextFocusForward="@+id/edR2Num1"
+        android:paddingBottom="6dp"
         android:textAlignment="center"
-        android:textSize="42dp"
+        android:textSize="46dp"
         android:textStyle="bold"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalAlign="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -32,13 +35,14 @@
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
-        android:hint="А"
+        android:hint="М"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:maxLength="1"
         android:nextFocusForward="@+id/edR2Text3"
+        android:paddingBottom="6dp"
         android:textAlignment="center"
-        android:textSize="42dp"
+        android:textSize="46dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edR2Num3" />
@@ -46,7 +50,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Num1"
         android:layout_width="32dp"
-        android:layout_height="0dp"
+        android:layout_height="60dp"
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
@@ -55,17 +59,17 @@
         android:inputType="text"
         android:maxLength="1"
         android:nextFocusForward="@+id/edR2Num2"
+        android:paddingBottom="6dp"
         android:textAlignment="center"
-        android:textSize="42dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edR2Text1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/edR2Text1" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Num2"
         android:layout_width="32dp"
-        android:layout_height="0dp"
+        android:layout_height="60dp"
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
@@ -74,17 +78,17 @@
         android:inputType="text"
         android:maxLength="1"
         android:nextFocusForward="@+id/edR2Num3"
+        android:paddingBottom="6dp"
         android:textAlignment="center"
-        android:textSize="42dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edR2Num1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/edR2Num1" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Num3"
         android:layout_width="32dp"
-        android:layout_height="0dp"
+        android:layout_height="60dp"
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
@@ -92,13 +96,13 @@
         android:imeOptions="actionNext"
         android:inputType="text"
         android:maxLength="1"
-        android:nextFocusForward="@+id/edR2Text3"
+        android:nextFocusForward="@+id/edR2Text2"
+        android:paddingBottom="6dp"
         android:textAlignment="center"
-        android:textSize="42dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edR2Num2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/edR2Num2" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Text3"
@@ -107,13 +111,14 @@
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
-        android:hint="А"
+        android:hint="М"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:maxLength="1"
         android:nextFocusForward="@+id/edR2Num4"
+        android:paddingBottom="6dp"
         android:textAlignment="center"
-        android:textSize="42dp"
+        android:textSize="46dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edR2Text2" />
@@ -121,8 +126,9 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Num4"
         android:layout_width="25dp"
-        android:layout_height="52dp"
+        android:layout_height="56dp"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
@@ -132,16 +138,16 @@
         android:maxLength="1"
         android:nextFocusForward="@+id/edR2Num5"
         android:textAlignment="center"
-        android:textSize="34dp"
+        android:textSize="38dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edR2Text3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/edR2Text3" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edR2Num5"
-        android:layout_width="30dp"
-        android:layout_height="52dp"
+        android:layout_width="26dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#00FFFFFF"
         android:ems="10"
         android:fontFamily="@font/roadn_font"
@@ -149,12 +155,11 @@
         android:inputType="text"
         android:maxLength="1"
         android:textAlignment="center"
-        android:textSize="34dp"
+        android:textSize="38dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/edR2Num4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/edR2Num4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

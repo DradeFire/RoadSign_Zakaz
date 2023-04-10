@@ -16,6 +16,7 @@ object RoadNumberFormatter_OneChar {
 			'Р' -> true
 			'Н' -> true
 			'С' -> true
+			' ' -> true
 			else -> false
 		}
 	}
@@ -32,6 +33,7 @@ object RoadNumberFormatter_OneChar {
 			'7' -> true
 			'8' -> true
 			'9' -> true
+			' ' -> true
 			else -> false
 		}
 	}

@@ -113,74 +113,74 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				contRoadNum1.ed2RoadNumber,
 				currentRoadNumberInput,
 				INDEX_1,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN2.configure(
 				contRoadNum2.ed2RoadNumber,
 				currentRoadNumberInput,
 				INDEX_2,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN2.configure(
 				contRoadNum3.ed2RoadNumber,
 				currentRoadNumberInput,
 				INDEX_3,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN2.configure(
 				contRoadNum4.ed2RoadNumber,
 				currentRoadNumberInput,
 				INDEX_4,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN2.configure(
 				contRoadNum5.ed2RoadNumber,
 				currentRoadNumberInput,
 				INDEX_5,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN2.configure(
 				contRoadNum6.ed2RoadNumber,
 				currentRoadNumberInput,
 				INDEX_6,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 
 			configuratorRN3.configure(
 				contRoadNum1.ed3RoadNumber,
 				currentRoadNumberInput,
 				INDEX_1,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN3.configure(
 				contRoadNum2.ed3RoadNumber,
 				currentRoadNumberInput,
 				INDEX_2,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN3.configure(
 				contRoadNum3.ed3RoadNumber,
 				currentRoadNumberInput,
 				INDEX_3,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN3.configure(
 				contRoadNum4.ed3RoadNumber,
 				currentRoadNumberInput,
 				INDEX_4,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN3.configure(
 				contRoadNum5.ed3RoadNumber,
 				currentRoadNumberInput,
 				INDEX_5,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 			configuratorRN3.configure(
 				contRoadNum6.ed3RoadNumber,
 				currentRoadNumberInput,
 				INDEX_6,
-				{ openCustomKeyboard() }
+				{ showCustomKeyboard() }
 			) { hideKeyboardAndElementsUnderKeyboard() }
 		}
 
@@ -195,10 +195,10 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 
 	override fun initButtons() {
 		binding?.apply {
-			constraintBackground.setOnClickListener {
-				showElementsUnderKeyboard()
-				hideCustomKeyboard()
-			}
+//			constraintBackground.setOnClickListener {
+//				showElementsUnderKeyboard()
+//				hideCustomKeyboard()
+//			}
 			btSaveRoadNumberList.setOnClickListener {
 				handleSaveRoadNumberClicked()
 			}
@@ -268,37 +268,43 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				null,
 				contRoadNum1.ed2RoadNumber,
 				contRoadNum1.ed3RoadNumber,
-				contRoadNum1.imAddRoadNum
+				contRoadNum1.imAddRoadNum,
+				INDEX_1
 			)
 			showRoadNumberInput(
 				null,
 				contRoadNum2.ed2RoadNumber,
 				contRoadNum2.ed3RoadNumber,
-				contRoadNum2.imAddRoadNum
+				contRoadNum2.imAddRoadNum,
+				INDEX_2
 			)
 			showRoadNumberInput(
 				null,
 				contRoadNum3.ed2RoadNumber,
 				contRoadNum3.ed3RoadNumber,
-				contRoadNum3.imAddRoadNum
+				contRoadNum3.imAddRoadNum,
+				INDEX_3
 			)
 			showRoadNumberInput(
 				null,
 				contRoadNum4.ed2RoadNumber,
 				contRoadNum4.ed3RoadNumber,
-				contRoadNum4.imAddRoadNum
+				contRoadNum4.imAddRoadNum,
+				INDEX_4
 			)
 			showRoadNumberInput(
 				null,
 				contRoadNum5.ed2RoadNumber,
 				contRoadNum5.ed3RoadNumber,
-				contRoadNum5.imAddRoadNum
+				contRoadNum5.imAddRoadNum,
+				INDEX_5
 			)
 			showRoadNumberInput(
 				null,
 				contRoadNum6.ed2RoadNumber,
 				contRoadNum6.ed3RoadNumber,
-				contRoadNum6.imAddRoadNum
+				contRoadNum6.imAddRoadNum,
+				INDEX_6
 			)
 		}
 	}
@@ -310,37 +316,43 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					null,
 					contRoadNum1.ed2RoadNumber,
 					contRoadNum1.ed3RoadNumber,
-					contRoadNum1.imAddRoadNum
+					contRoadNum1.imAddRoadNum,
+					i
 				)
 				INDEX_2 -> showRoadNumberInput(
 					null,
 					contRoadNum2.ed2RoadNumber,
 					contRoadNum2.ed3RoadNumber,
-					contRoadNum2.imAddRoadNum
+					contRoadNum2.imAddRoadNum,
+					i
 				)
 				INDEX_3 -> showRoadNumberInput(
 					null,
 					contRoadNum3.ed2RoadNumber,
 					contRoadNum3.ed3RoadNumber,
-					contRoadNum3.imAddRoadNum
+					contRoadNum3.imAddRoadNum,
+					i
 				)
 				INDEX_4 -> showRoadNumberInput(
 					null,
 					contRoadNum4.ed2RoadNumber,
 					contRoadNum4.ed3RoadNumber,
-					contRoadNum4.imAddRoadNum
+					contRoadNum4.imAddRoadNum,
+					i
 				)
 				INDEX_5 -> showRoadNumberInput(
 					null,
 					contRoadNum5.ed2RoadNumber,
 					contRoadNum5.ed3RoadNumber,
-					contRoadNum5.imAddRoadNum
+					contRoadNum5.imAddRoadNum,
+					i
 				)
 				INDEX_6 -> showRoadNumberInput(
 					null,
 					contRoadNum6.ed2RoadNumber,
 					contRoadNum6.ed3RoadNumber,
-					contRoadNum6.imAddRoadNum
+					contRoadNum6.imAddRoadNum,
+					i
 				)
 			}
 		}
@@ -480,7 +492,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					.subscribeOn(Schedulers.computation())
 					.observeOn(AndroidSchedulers.mainThread())
 					.subscribe({ roadSignChar ->
-						bindRoadNumberUI_OneChar(roadSignChar)
+						bindRoadNumberOneChar(roadSignChar)
 					}, { err ->
 						MyLogger.log("MainFragment :: initObservers :: error:", err)
 						Toast.makeText(requireContext(), err.message, Toast.LENGTH_SHORT).show()
@@ -489,7 +501,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 		}
 	}
 
-	private fun bindRoadNumberUI_OneChar(roadSignChar: Char) {
+	private fun bindRoadNumberOneChar(roadSignChar: Char) {
 		(requireActivity().window.currentFocus as? TextInputEditText)?.let { edText ->
 			when (currentRoadNumberInput.value) {
 				INDEX_1 -> {
@@ -619,7 +631,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					}
 				}
 				null -> {
-					MyLogger.log("Main fragment :: bindRoadNumberUI_OneChar :: error: Some shit!")
+					MyLogger.log("Main fragment :: bindRoadNumberUIOneChar :: error: Some shit!")
 					Toast.makeText(requireContext(), "Some shit!", Toast.LENGTH_SHORT).show()
 				}
 			}
@@ -657,37 +669,43 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					type,
 					contRoadNum1.ed2RoadNumber,
 					contRoadNum1.ed3RoadNumber,
-					contRoadNum1.imAddRoadNum
+					contRoadNum1.imAddRoadNum,
+					INDEX_1
 				)
 				INDEX_2 -> showRoadNumberInput(
 					type,
 					contRoadNum2.ed2RoadNumber,
 					contRoadNum2.ed3RoadNumber,
-					contRoadNum2.imAddRoadNum
+					contRoadNum2.imAddRoadNum,
+					INDEX_2
 				)
 				INDEX_3 -> showRoadNumberInput(
 					type,
 					contRoadNum3.ed2RoadNumber,
 					contRoadNum3.ed3RoadNumber,
-					contRoadNum3.imAddRoadNum
+					contRoadNum3.imAddRoadNum,
+					INDEX_3
 				)
 				INDEX_4 -> showRoadNumberInput(
 					type,
 					contRoadNum4.ed2RoadNumber,
 					contRoadNum4.ed3RoadNumber,
-					contRoadNum4.imAddRoadNum
+					contRoadNum4.imAddRoadNum,
+					INDEX_4
 				)
 				INDEX_5 -> showRoadNumberInput(
 					type,
 					contRoadNum5.ed2RoadNumber,
 					contRoadNum5.ed3RoadNumber,
-					contRoadNum5.imAddRoadNum
+					contRoadNum5.imAddRoadNum,
+					INDEX_5
 				)
 				INDEX_6 -> showRoadNumberInput(
 					type,
 					contRoadNum6.ed2RoadNumber,
 					contRoadNum6.ed3RoadNumber,
-					contRoadNum6.imAddRoadNum
+					contRoadNum6.imAddRoadNum,
+					INDEX_6
 				)
 			}
 		}
@@ -697,8 +715,10 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 		type: RoadSignType?,
 		ed2: InputRoadNumber2Binding,
 		ed3: InputRoadNumber3Binding,
-		im: ImageView
+		im: ImageView,
+		i: Int
 	) {
+		currentRoadNumberInput.value = i
 		configuratorRN2.clear(ed2)
 		configuratorRN3.clear(ed3)
 		when (type) {
@@ -706,13 +726,19 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				ed2.root.isVisible = true
 				ed3.root.isVisible = false
 				im.isVisible = false
-				configuratorRN2.initCursor(ed2)
+				configuratorRN2.initCursor(ed2) {
+					hideKeyboardAndElementsUnderKeyboard()
+					showCustomKeyboard()
+				}
 			}
 			RoadSignType.RUS_3 -> {
 				ed2.root.isVisible = false
 				ed3.root.isVisible = true
 				im.isVisible = false
-				configuratorRN3.initCursor(ed3)
+				configuratorRN3.initCursor(ed3) {
+					hideKeyboardAndElementsUnderKeyboard()
+					showCustomKeyboard()
+				}
 			}
 			RoadSignType.IMAGE -> TODO()
 			null -> {
@@ -724,7 +750,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 		}
 	}
 
-	private fun openCustomKeyboard() {
+	private fun showCustomKeyboard() {
 		binding?.keyboardview?.isVisible = true
 		binding?.keyboardview?.isEnabled = true
 	}

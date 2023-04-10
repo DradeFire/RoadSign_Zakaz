@@ -6,13 +6,9 @@
     android:verticalGap="12dp">
     <Row>
         <Key
-            android:codes="0"
-            android:keyWidth="9%p"
-            android:keyEdgeFlags="left"
-            android:keyLabel="0" />
-        <Key
             android:codes="1"
             android:keyWidth="9%p"
+            android:keyEdgeFlags="left"
             android:keyLabel="1" />
         <Key
             android:codes="2"
@@ -45,8 +41,12 @@
         <Key
             android:codes="9"
             android:keyWidth="9%p"
-            android:keyEdgeFlags="right"
             android:keyLabel="9" />
+        <Key
+            android:codes="0"
+            android:keyWidth="9%p"
+            android:keyEdgeFlags="right"
+            android:keyLabel="0" />
     </Row>
     <Row>
         <Key
@@ -71,37 +71,37 @@
             android:keyWidth="13%p"
             android:keyLabel="М" />
         <Key
+            android:codes="21"
+            android:keyWidth="13%p"
+            android:keyLabel="Н" />
+        <Key
             android:codes="16"
             android:keyWidth="13%p"
-            android:keyLabel="О" />
-        <Key
-            android:codes="17"
-            android:keyWidth="13%p"
             android:keyEdgeFlags="right"
-            android:keyLabel="Т" />
+            android:keyLabel="О" />
     </Row>
     <Row>
         <Key
-            android:codes="18"
+            android:codes="20"
             android:keyWidth="15%p"
             android:keyEdgeFlags="left"
-            android:keyLabel="Х" />
+            android:keyLabel="Р" />
+        <Key
+            android:codes="22"
+            android:keyWidth="15%p"
+            android:keyLabel="С" />
+        <Key
+            android:codes="17"
+            android:keyWidth="15%p"
+            android:keyLabel="Т" />
         <Key
             android:codes="19"
             android:keyWidth="15%p"
             android:keyLabel="У" />
         <Key
-            android:codes="20"
+            android:codes="18"
             android:keyWidth="15%p"
-            android:keyLabel="Р" />
-        <Key
-            android:codes="21"
-            android:keyWidth="15%p"
-            android:keyLabel="Н" />
-        <Key
-            android:codes="22"
-            android:keyWidth="15%p"
-            android:keyLabel="С" />
+            android:keyLabel="Х" />
         <Key
             android:codes="-1"
             android:keyWidth="15%p"
