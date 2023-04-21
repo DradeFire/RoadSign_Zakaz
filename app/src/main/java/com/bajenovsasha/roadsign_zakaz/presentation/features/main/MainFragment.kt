@@ -75,6 +75,15 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 	 */
 	private val currentRoadNumberInput: MutableLiveData<Int> = MutableLiveData()
 
+	private val imageIdList = arrayOf(
+		R.drawable.plus,
+		R.drawable.plus,
+		R.drawable.plus,
+		R.drawable.plus,
+		R.drawable.plus,
+		R.drawable.plus,
+	)
+
 	override fun initStartValues() {
 		pickIt = PickiT(requireContext(), this, requireActivity())
 		activity?.requestPermissions(
@@ -387,7 +396,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				map[INDEX_1] = RoadSignInfo(
 					RoadSignType.IMAGE,
 					null,
-					contRoadNum1.imAddRoadNum.drawable
+					imageIdList[0]
 				)
 			}
 
@@ -406,7 +415,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				map[INDEX_2] = RoadSignInfo(
 					RoadSignType.IMAGE,
 					null,
-					contRoadNum2.imAddRoadNum.drawable
+					imageIdList[1]
 				)
 			}
 
@@ -425,7 +434,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				map[INDEX_3] = RoadSignInfo(
 					RoadSignType.IMAGE,
 					null,
-					contRoadNum3.imAddRoadNum.drawable
+					imageIdList[2]
 				)
 			}
 
@@ -444,7 +453,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				map[INDEX_4] = RoadSignInfo(
 					RoadSignType.IMAGE,
 					null,
-					contRoadNum4.imAddRoadNum.drawable
+					imageIdList[3]
 				)
 			}
 
@@ -463,7 +472,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				map[INDEX_5] = RoadSignInfo(
 					RoadSignType.IMAGE,
 					null,
-					contRoadNum5.imAddRoadNum.drawable
+					imageIdList[4]
 				)
 			}
 
@@ -482,7 +491,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				map[INDEX_6] = RoadSignInfo(
 					RoadSignType.IMAGE,
 					null,
-					contRoadNum6.imAddRoadNum.drawable
+					imageIdList[5]
 				)
 			}
 
@@ -758,13 +767,17 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 				ed2.root.isVisible = false
 				ed3.root.isVisible = false
 				im.isVisible = true
-				imageId?.let { im.setImageResource(it) }
+				if (imageId != null) {
+					im.setImageResource(imageId)
+					imageIdList[i - 1] = imageId
+				}
 			}
 			null -> {
 				ed2.root.isVisible = false
 				ed3.root.isVisible = false
 				im.isVisible = true
 				im.setImageResource(R.drawable.plus)
+				imageIdList[i - 1] = R.drawable.plus
 			}
 		}
 	}

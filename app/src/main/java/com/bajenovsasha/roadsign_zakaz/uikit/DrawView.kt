@@ -302,9 +302,9 @@ class DrawView @JvmOverloads constructor(
 //								paint
 //							)
 							roadSignInfo.imageDrawable?.let {
-								if(it != context.getDrawable(R.drawable.plus)) {
+								if(it != R.drawable.plus) {
 									bitmapCanvas.drawBitmap(
-										it.toBitmap(),
+										context.getDrawable(it)?.toBitmap()!!,
 										w,
 										h,
 										paint
