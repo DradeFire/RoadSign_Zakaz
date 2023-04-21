@@ -383,12 +383,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum1.ed3RoadNumber)
 				)
 			}
-//			else {
-//				map[INDEX_1] = RoadSignInfo(
-//					RoadSignType.IMAGE,
-//					""
-//				)
-//			}
+			else {
+				map[INDEX_1] = RoadSignInfo(
+					RoadSignType.IMAGE,
+					null,
+					contRoadNum1.imAddRoadNum.drawable
+				)
+			}
 
 			if (contRoadNum2.ed2RoadNumber.root.isVisible) {
 				map[INDEX_2] = RoadSignInfo(
@@ -401,12 +402,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum2.ed3RoadNumber)
 				)
 			}
-//			else {
-//				map[INDEX_2] = RoadSignInfo(
-//					RoadSignType.IMAGE,
-//					""
-//				)
-//			}
+			else {
+				map[INDEX_2] = RoadSignInfo(
+					RoadSignType.IMAGE,
+					null,
+					contRoadNum2.imAddRoadNum.drawable
+				)
+			}
 
 			if (contRoadNum3.ed2RoadNumber.root.isVisible) {
 				map[INDEX_3] = RoadSignInfo(
@@ -419,12 +421,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum3.ed3RoadNumber)
 				)
 			}
-//			else {
-//				map[INDEX_3] = RoadSignInfo(
-//					RoadSignType.IMAGE,
-//					""
-//				)
-//			}
+			else {
+				map[INDEX_3] = RoadSignInfo(
+					RoadSignType.IMAGE,
+					null,
+					contRoadNum3.imAddRoadNum.drawable
+				)
+			}
 
 			if (contRoadNum4.ed2RoadNumber.root.isVisible) {
 				map[INDEX_4] = RoadSignInfo(
@@ -437,12 +440,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum4.ed3RoadNumber)
 				)
 			}
-//			else {
-//				map[INDEX_4] = RoadSignInfo(
-//					RoadSignType.IMAGE,
-//					""
-//				)
-//			}
+			else {
+				map[INDEX_4] = RoadSignInfo(
+					RoadSignType.IMAGE,
+					null,
+					contRoadNum4.imAddRoadNum.drawable
+				)
+			}
 
 			if (contRoadNum5.ed2RoadNumber.root.isVisible) {
 				map[INDEX_5] = RoadSignInfo(
@@ -455,12 +459,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum5.ed3RoadNumber)
 				)
 			}
-//			else {
-//				map[INDEX_5] = RoadSignInfo(
-//					RoadSignType.IMAGE,
-//					""
-//				)
-//			}
+			else {
+				map[INDEX_5] = RoadSignInfo(
+					RoadSignType.IMAGE,
+					null,
+					contRoadNum5.imAddRoadNum.drawable
+				)
+			}
 
 			if (contRoadNum6.ed2RoadNumber.root.isVisible) {
 				map[INDEX_6] = RoadSignInfo(
@@ -473,12 +478,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					configuratorRN3.getFullString(contRoadNum6.ed3RoadNumber)
 				)
 			}
-//			else {
-//				map[INDEX_6] = RoadSignInfo(
-//					RoadSignType.IMAGE,
-//					""
-//				)
-//			}
+			else {
+				map[INDEX_6] = RoadSignInfo(
+					RoadSignType.IMAGE,
+					null,
+					contRoadNum6.imAddRoadNum.drawable
+				)
+			}
 
 			return map
 		}
@@ -655,14 +661,15 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 
 	private fun onRoadNumberClicked(i: Int) {
 		ChooseRoadNumberDialog({ type: RoadSignType ->
-			handleRoadNumberInput(i, type)
-		}, {
+			handleRoadNumberInput(i, type, null)
+		}, { imageId: Int ->
 //			openGallery(i)
-			testImage(i)
+//			testImage(i)
+			handleRoadNumberInput(i, RoadSignType.IMAGE, imageId)
 		}).show(requireActivity().supportFragmentManager, "choose_road_number")
 	}
 
-	private fun handleRoadNumberInput(i: Int, type: RoadSignType) {
+	private fun handleRoadNumberInput(i: Int, type: RoadSignType, imageId: Int?) {
 		binding?.apply {
 			when (i) {
 				INDEX_1 -> showRoadNumberInput(
@@ -670,42 +677,48 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					contRoadNum1.ed2RoadNumber,
 					contRoadNum1.ed3RoadNumber,
 					contRoadNum1.imAddRoadNum,
-					INDEX_1
+					INDEX_1,
+					imageId
 				)
 				INDEX_2 -> showRoadNumberInput(
 					type,
 					contRoadNum2.ed2RoadNumber,
 					contRoadNum2.ed3RoadNumber,
 					contRoadNum2.imAddRoadNum,
-					INDEX_2
+					INDEX_2,
+					imageId
 				)
 				INDEX_3 -> showRoadNumberInput(
 					type,
 					contRoadNum3.ed2RoadNumber,
 					contRoadNum3.ed3RoadNumber,
 					contRoadNum3.imAddRoadNum,
-					INDEX_3
+					INDEX_3,
+					imageId
 				)
 				INDEX_4 -> showRoadNumberInput(
 					type,
 					contRoadNum4.ed2RoadNumber,
 					contRoadNum4.ed3RoadNumber,
 					contRoadNum4.imAddRoadNum,
-					INDEX_4
+					INDEX_4,
+					imageId
 				)
 				INDEX_5 -> showRoadNumberInput(
 					type,
 					contRoadNum5.ed2RoadNumber,
 					contRoadNum5.ed3RoadNumber,
 					contRoadNum5.imAddRoadNum,
-					INDEX_5
+					INDEX_5,
+					imageId
 				)
 				INDEX_6 -> showRoadNumberInput(
 					type,
 					contRoadNum6.ed2RoadNumber,
 					contRoadNum6.ed3RoadNumber,
 					contRoadNum6.imAddRoadNum,
-					INDEX_6
+					INDEX_6,
+					imageId
 				)
 			}
 		}
@@ -716,7 +729,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 		ed2: InputRoadNumber2Binding,
 		ed3: InputRoadNumber3Binding,
 		im: ImageView,
-		i: Int
+		i: Int,
+		imageId: Int? = null
 	) {
 		currentRoadNumberInput.value = i
 		configuratorRN2.clear(ed2)
@@ -740,7 +754,12 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 					showCustomKeyboard()
 				}
 			}
-			RoadSignType.IMAGE -> TODO()
+			RoadSignType.IMAGE -> {
+				ed2.root.isVisible = false
+				ed3.root.isVisible = false
+				im.isVisible = true
+				imageId?.let { im.setImageResource(it) }
+			}
 			null -> {
 				ed2.root.isVisible = false
 				ed3.root.isVisible = false
@@ -884,22 +903,22 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 	private fun roadNumbersModelMapHandle(map: HashMap<Int, RoadSignInfo>) {
 		binding?.apply {
 			map[INDEX_1]?.let {
-				bindUI(it, contRoadNum1.imAddRoadNum, Uri.parse(it.signOrUri))
+				bindUI(it, contRoadNum1.imAddRoadNum, Uri.parse(it.roadNumber))
 			}
 			map[INDEX_2]?.let {
-				bindUI(it, contRoadNum2.imAddRoadNum, Uri.parse(it.signOrUri))
+				bindUI(it, contRoadNum2.imAddRoadNum, Uri.parse(it.roadNumber))
 			}
 			map[INDEX_3]?.let {
-				bindUI(it, contRoadNum3.imAddRoadNum, Uri.parse(it.signOrUri))
+				bindUI(it, contRoadNum3.imAddRoadNum, Uri.parse(it.roadNumber))
 			}
 			map[INDEX_4]?.let {
-				bindUI(it, contRoadNum4.imAddRoadNum, Uri.parse(it.signOrUri))
+				bindUI(it, contRoadNum4.imAddRoadNum, Uri.parse(it.roadNumber))
 			}
 			map[INDEX_5]?.let {
-				bindUI(it, contRoadNum5.imAddRoadNum, Uri.parse(it.signOrUri))
+				bindUI(it, contRoadNum5.imAddRoadNum, Uri.parse(it.roadNumber))
 			}
 			map[INDEX_6]?.let {
-				bindUI(it, contRoadNum6.imAddRoadNum, Uri.parse(it.signOrUri))
+				bindUI(it, contRoadNum6.imAddRoadNum, Uri.parse(it.roadNumber))
 			}
 		}
 	}
