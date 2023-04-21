@@ -51,16 +51,24 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 
 	private val mOnKeyboardActionListener: KeyboardView.OnKeyboardActionListener =
 		object : KeyboardView.OnKeyboardActionListener {
+			@Deprecated("Deprecated in Java")
 			override fun onKey(primaryCode: Int, keyCodes: IntArray) {
 				viewModel?.onCustomKeyClicked(primaryCode)
 			}
 
+			@Deprecated("Deprecated in Java")
 			override fun onPress(arg0: Int) {}
+			@Deprecated("Deprecated in Java")
 			override fun onRelease(primaryCode: Int) {}
+			@Deprecated("Deprecated in Java")
 			override fun onText(text: CharSequence) {}
+			@Deprecated("Deprecated in Java")
 			override fun swipeDown() {}
+			@Deprecated("Deprecated in Java")
 			override fun swipeLeft() {}
+			@Deprecated("Deprecated in Java")
 			override fun swipeRight() {}
+			@Deprecated("Deprecated in Java")
 			override fun swipeUp() {}
 		}
 
@@ -673,7 +681,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 			handleRoadNumberInput(i, type, null)
 		}, { imageId: Int ->
 //			openGallery(i)
-//			testImage(i)
 			handleRoadNumberInput(i, RoadSignType.IMAGE, imageId)
 		}).show(requireActivity().supportFragmentManager, "choose_road_number")
 	}
@@ -900,17 +907,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(), PickiTC
 		Reason: String?
 	) {
 		// no-op
-	}
-
-	private fun testImage(i: Int) {
-		when (i) {
-			INDEX_1 -> binding?.contRoadNum1?.imAddRoadNum?.setImageResource(R.drawable.back_image)
-			INDEX_2 -> binding?.contRoadNum2?.imAddRoadNum?.setImageResource(R.drawable.back_image)
-			INDEX_3 -> binding?.contRoadNum3?.imAddRoadNum?.setImageResource(R.drawable.back_image)
-			INDEX_4 -> binding?.contRoadNum4?.imAddRoadNum?.setImageResource(R.drawable.back_image)
-			INDEX_5 -> binding?.contRoadNum5?.imAddRoadNum?.setImageResource(R.drawable.back_image)
-			INDEX_6 -> binding?.contRoadNum6?.imAddRoadNum?.setImageResource(R.drawable.back_image)
-		}
 	}
 
 	private fun roadNumbersModelMapHandle(map: HashMap<Int, RoadSignInfo>) {
